@@ -1,6 +1,6 @@
-# ChatApp For Android Devices by Command
+# Simple Chat App by Command For Android Devices
 
-Home | Favourities | Search
+Splash | Login | Search
  -----| ----------- | ------
 ![Home Page](https://user-images.githubusercontent.com/88981781/129723588-249239f7-b870-4504-bed2-3e4e9e8f2150.png)| ![Favourities](https://user-images.githubusercontent.com/88981781/129724060-09aac523-8695-4f6e-95b7-d8d7c7aa133e.png) | ![Search](https://user-images.githubusercontent.com/88981781/135717442-b3c25b9a-113f-45f5-95f5-5598fa293050.jpg)
 
