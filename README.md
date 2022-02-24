@@ -13,6 +13,7 @@ Native Android chat application written in Kotlin using Jetpack Compose
     * [Google Firebase](https://firebase.google.com)
     * [Flows](https://developer.android.com/kotlin/flow)
     * [Hilt](https://github.com/google/dagger) - DI
+    * [Accompanist](https://github.com/google/accompanist)
     * [Jetpack](https://developer.android.com/jetpack)
         * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) - deal with whole in-app navigation      
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way
