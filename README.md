@@ -1,30 +1,8 @@
 # ChatApp For Android Devices by Command
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Best-README-Template</h3>
-
-  <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
-  </p>
-</div>
-
-
-
+Home | Favourities | Search
+ -----| ----------- | ------
+![Home Page](https://user-images.githubusercontent.com/88981781/129723588-249239f7-b870-4504-bed2-3e4e9e8f2150.png)| ![Favourities](https://user-images.githubusercontent.com/88981781/129724060-09aac523-8695-4f6e-95b7-d8d7c7aa133e.png) | ![Search](https://user-images.githubusercontent.com/88981781/135717442-b3c25b9a-113f-45f5-95f5-5598fa293050.jpg)
 
 ### Built With
 
