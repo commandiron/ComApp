@@ -30,21 +30,6 @@ Profile | UserList | Chat
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
  
  * Todo
-   * Dark theme ✔
+   * Dark theme ✔ X
 
 
-
-
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [Kotlin](https://kotlinlang.org)
-* [Google Firebase](https://firebase.google.com)
-* [Android Jetpack Compose](https://developer.android.com/jetpack/compose)
-* [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
-* [Coroutines + Flow](https://developer.android.com/kotlin/coroutines)
-* [navigation](https://developer.android.com/guide/navigation)
-* [mvvm](https://developer.android.com/topic/architecture)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
