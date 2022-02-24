@@ -6,7 +6,7 @@ Splash | Login
 
 Profile | UserList | Chat
  -----| ----- | -----
-![Splash_Screen](https://user-images.githubusercontent.com/50905347/155622233-f76ff3d7-da3d-47e9-89a2-e401bd0887b7.png) | ![UserList_Screen](https://user-images.githubusercontent.com/50905347/155622809-ed653d79-3f46-4b37-985f-24cdf5107abb.png) | <img src="https://user-images.githubusercontent.com/50905347/155622823-aecda25e-2e06-45f1-8de4-7550f2597cfb.png" width="150" height="280">
+![Splash_Screen](https://user-images.githubusercontent.com/50905347/155622233-f76ff3d7-da3d-47e9-89a2-e401bd0887b7.png) | ![UserList_Screen](https://user-images.githubusercontent.com/50905347/155622809-ed653d79-3f46-4b37-985f-24cdf5107abb.png) | <img src="https://user-images.githubusercontent.com/50905347/155622823-aecda25e-2e06-45f1-8de4-7550f2597cfb.png" width="1080" height="2280">
 
 
 
