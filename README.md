@@ -1,4 +1,6 @@
-# Simple Chat App by Command For Android Devices
+# ComApp
+
+Native Android chat application written in Kotlin using Jetpack Compose
 
 Splash | Login 
  -----| -----
