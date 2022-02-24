@@ -16,6 +16,23 @@ Profile | UserList | Chat
 
 <img src="https://user-images.githubusercontent.com/50905347/155622823-aecda25e-2e06-45f1-8de4-7550f2597cfb.png" width="200" height="400"> 
 
+* Tech-stack
+    * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
+    * [Google Firebase](https://firebase.google.com)
+    * [Flows](https://developer.android.com/kotlin/flow)
+    * [Hilt](https://github.com/google/dagger) - DI
+    * [Jetpack](https://developer.android.com/jetpack)
+        * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) - deal with whole in-app navigation      
+        * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way
+        * [Compose](https://developer.android.com/jetpack/compose)
+    * Tests - local and instrumented unit tests 
+* Architecture
+    * Model-View-ViewModel
+    * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
+ 
+ * Todo
+   * Dark theme ✔
+
 
 
 
