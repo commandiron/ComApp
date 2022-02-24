@@ -30,6 +30,6 @@ Profile | UserList | Chat
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
  
  * Todo
-   * Dark theme ✔ X
+   * Dark theme ✔ X [x]
 
 
