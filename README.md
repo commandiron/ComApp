@@ -2,11 +2,11 @@
 
 Splash | Login | Profile
  -----| ----------- | ------
-![Home Page](https://user-images.githubusercontent.com/88981781/129723588-249239f7-b870-4504-bed2-3e4e9e8f2150.png)| ![Favourities](https://user-images.githubusercontent.com/88981781/129724060-09aac523-8695-4f6e-95b7-d8d7c7aa133e.png) | ![Search](https://user-images.githubusercontent.com/88981781/135717442-b3c25b9a-113f-45f5-95f5-5598fa293050.jpg)
+![Splash_Screen](https://user-images.githubusercontent.com/50905347/155622233-f76ff3d7-da3d-47e9-89a2-e401bd0887b7.png) | ![Login_Screen](https://user-images.githubusercontent.com/50905347/155622238-9d075029-19e7-4fb3-a77d-71ba996d41f1.png) | ![Profile_Screen](https://user-images.githubusercontent.com/50905347/155622244-0da0bdd1-4d54-4bff-af1b-b9999536398b.png)
 
 UserList | ChatScreen 
  -----| ----------- 
-![Home Page](https://user-images.githubusercontent.com/88981781/129723588-249239f7-b870-4504-bed2-3e4e9e8f2150.png)| ![Favourities](https://user-images.githubusercontent.com/88981781/129724060-09aac523-8695-4f6e-95b7-d8d7c7aa133e.png)
+![UserList_Screen](https://user-images.githubusercontent.com/50905347/155622249-87caced7-126d-46fd-ac30-7b42f50274a7.png) | ![Chat_Screen](https://user-images.githubusercontent.com/50905347/155622252-d85c50ac-360d-4cdd-a65b-fa937089a700.png)
 
 ### Built With
 
