@@ -1,4 +1,4 @@
-# ChatApp_by_command
+# ChatApp For Android Devices by Command
 
 <!-- PROJECT LOGO -->
 <br />
