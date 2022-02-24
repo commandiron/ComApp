@@ -25,7 +25,6 @@ Profile | UserList | Chat
         * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) - deal with whole in-app navigation      
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way
         * [Compose](https://developer.android.com/jetpack/compose)
-    * Tests - local and instrumented unit tests 
 * Architecture
     * Model-View-ViewModel
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
