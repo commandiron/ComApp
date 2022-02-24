@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "129693963544",
+    "firebase_url": "https://commandchatapp-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "commandchatapp",
+    "storage_bucket": "commandchatapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129693963544:android:7b9c722bfd3c381d107a6d",
+        "android_client_info": {
+          "package_name": "com.example.chatapp_by_command"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129693963544-5tstn1mfdcronjin0apud65uigoaagsq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeW9xCUqZTVMi5Pa9BsCQD7QU_YtqcSOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129693963544-5tstn1mfdcronjin0apud65uigoaagsq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
