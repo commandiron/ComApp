@@ -103,6 +103,7 @@ fun ProfileScreen(
 
                     ClickableToGalleryProfilePictureImage(userDataPictureUrl){
                         //Profil picture değiştirdiğimde ekranda bir tekleme oluyor, bunu nasıl çözebilirim?
+                        //Profil picture boş hali yeşil gözüküyor onu güzel bir boş kafa ile değiştir.
                         imageUriForFirebaseStorageFromGallery = it
                         if(imageUriForFirebaseStorageFromGallery != null){
                             profileViewModel.uploadPictureToFirebase(imageUriForFirebaseStorageFromGallery!!, name, surName)
