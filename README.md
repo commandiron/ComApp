@@ -12,7 +12,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
 |UserList|Chat|
 |<img src="https://user-images.githubusercontent.com/50905347/155622809-ed653d79-3f46-4b37-985f-24cdf5107abb.png" width="300" height="600">|<img src="https://user-images.githubusercontent.com/50905347/155622823-aecda25e-2e06-45f1-8de4-7550f2597cfb.png" width="300" height="600">|
 
-* Application - Features
+* Application - Features ☕
    * User Status (ONLINE - OFFLINE)
    * Message Status (RECEIVED - READ) - PENDING: After push notification.
    * Friend Status (PENDING, ACCEPTED, CANCELED, BLOCKED)
@@ -21,7 +21,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
    * LazyColumn Last Message Snap
    * UserList Swipe Reflesh
 
-* Tech-stack
+* Tech-stack ⚛️
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
     * [Google Firebase](https://firebase.google.com)
     * [Flows](https://developer.android.com/kotlin/flow)
@@ -31,7 +31,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
         * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) - deal with whole in-app navigation      
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way
         * [Compose](https://developer.android.com/jetpack/compose)
-* Architecture
+* Architecture 🏗️
     * Model-View-ViewModel
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
  
