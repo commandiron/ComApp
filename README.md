@@ -13,8 +13,10 @@ Native Android chat application written in Kotlin using Jetpack Compose
 |<img src="https://user-images.githubusercontent.com/50905347/155622809-ed653d79-3f46-4b37-985f-24cdf5107abb.png" width="300" height="600">|<img src="https://user-images.githubusercontent.com/50905347/155622823-aecda25e-2e06-45f1-8de4-7550f2597cfb.png" width="300" height="600">|
 
 * Application - Features
-   * User Status
-   * Message Status
+   * User Status (ONLINE - OFFLINE)
+   * Message Status (RECEIVED - READ) - PENDING: After push notification.
+   * Friend Status (PENDING, ACCEPTED, CANCELED, BLOCKED)
+   * New Message Alert
 
 * Tech-stack
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
@@ -32,5 +34,6 @@ Native Android chat application written in Kotlin using Jetpack Compose
  
  * Todo
    * Dark theme ❌
+   * Push notification ❌
 
 
