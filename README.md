@@ -19,6 +19,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
    * New Message Alert
    * Navigation Animation Between Sceens
    * LazyColumn Last Message Snap
+   * UserList Swipe Reflesh
 
 * Tech-stack
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
