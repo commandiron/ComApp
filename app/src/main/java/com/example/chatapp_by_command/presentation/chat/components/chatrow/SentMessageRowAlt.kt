@@ -17,6 +17,8 @@ import com.example.chatapp_by_command.presentation.chat.components.chatrow.chatf
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.quotedmessagealt.QuotedMessageAlt
 import com.example.chatapp_by_command.ui.theme.SentMessageColor
 import com.example.chatapp_by_command.ui.theme.SentQuoteColor
+import com.google.accompanist.insets.LocalWindowInsets
+import com.google.accompanist.insets.rememberInsetsPaddingValues
 
 /**
  * This sent message row uses overloaded [SubcomposeColumn] function only with **content** arg
@@ -38,7 +40,6 @@ fun SentMessageRowAlt(
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(start = 60.dp, end = 8.dp, top = 2.dp, bottom = 2.dp)
-
 
     ) {
         // This is chat bubble

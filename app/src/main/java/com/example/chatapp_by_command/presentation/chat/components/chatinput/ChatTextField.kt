@@ -26,6 +26,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
@@ -45,7 +46,8 @@ fun ChatTextField(
     modifier: Modifier = Modifier,
     input: TextFieldValue,
     empty: Boolean,
-    onValueChange: (TextFieldValue) -> Unit
+    onValueChange: (TextFieldValue) -> Unit,
+    onFocusEvent: (Boolean) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -79,7 +81,9 @@ fun ChatTextField(
 
                     BasicTextField(
                         modifier = Modifier
-                            .fillMaxWidth(),
+                            .fillMaxWidth().focusable(true).onFocusEvent {
+                                onFocusEvent(it.hasFocus)
+                            },
                         textStyle = TextStyle(
                             fontSize = 18.sp
                         ),

@@ -21,6 +21,7 @@ import com.example.chatapp_by_command.presentation.chat.components.chatrow.Subco
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.chatflexboxlayout.ChatFlexBoxLayout
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.quotedmessagealt.QuotedMessageAlt
 import com.example.chatapp_by_command.ui.theme.ReceivedQuoteColor
+import com.google.accompanist.insets.imePadding
 
 var recipientRegisteredName = "+44 515 1245 768"
 var isRecipientRegistered = true

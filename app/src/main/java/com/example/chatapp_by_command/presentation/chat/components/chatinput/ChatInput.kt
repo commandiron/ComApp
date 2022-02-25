@@ -3,6 +3,7 @@ package com.example.chatapp_by_command.presentation.chat.components
 import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.border
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -10,6 +11,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
@@ -21,7 +23,8 @@ import com.google.accompanist.insets.*
 @Composable
 internal fun ChatInput(
     modifier: Modifier = Modifier,
-    onMessageChange: (String) -> Unit) {
+    onMessageChange: (String) -> Unit,
+    onFocusEvent: (Boolean) -> Unit) {
 
     val context = LocalContext.current
 
@@ -39,11 +42,13 @@ internal fun ChatInput(
     ) {
 
         ChatTextField(
-            modifier = modifier.weight(1f),
+            modifier = modifier.weight(1f).focusable(true),
             input = input,
             empty = textEmpty,
             onValueChange = {
                 input = it
+            }, onFocusEvent = {
+                onFocusEvent(it)
             }
         )
 

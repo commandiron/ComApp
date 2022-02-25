@@ -39,6 +39,7 @@ import com.example.chatapp_by_command.ui.theme.backgroundColor
 import com.example.chatapp_by_command.ui.theme.primaryColor
 import com.google.accompanist.insets.*
 import kotlinx.coroutines.delay
+import com.google.accompanist.insets.imePadding as imePadding
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -78,24 +79,28 @@ private fun ChatScreenContent(
     navController: NavHostController,
     keyboardController: SoftwareKeyboardController) {
 
-
-
     val context = LocalContext.current
     val messages = chatViewModel.messages
 
-    //Scroll Lazy Column //Bu kısım performansı düşürüyor.
+    //Scroll Lazy Column //Bu kısım performansı düşürüyor gibi görünüyor.
     val scrollState = rememberLazyListState()
     val messagesLoadedFirstTime = chatViewModel.messagesLoadedFirstTime.value
-    LaunchedEffect(key1 = messagesLoadedFirstTime, messages){
+    val messageInserted = chatViewModel.messageInserted.value
+    var isChatInputFocus by remember { mutableStateOf(false) }
+    LaunchedEffect(key1 = messagesLoadedFirstTime, messages,messageInserted){
         if(messages.size > 0){
             scrollState.scrollToItem(
                 index = messages.size - 1)
         }
     }
-    val messageInserted = chatViewModel.messageInserted.value
-    LaunchedEffect(key1 = messageInserted){
+
+    val imePaddingValues = rememberInsetsPaddingValues(insets = LocalWindowInsets.current.ime)
+    var imeBottomPadding = imePaddingValues.calculateBottomPadding().value.toInt()
+
+    //Klavye alttan çekince swipe etme olayını çözdüm fakat çok atlıyor. ara değerleri çok hesaplamadığı için olabilir.
+    LaunchedEffect(key1 = imeBottomPadding){
         if(messages.size > 0){
-            scrollState.animateScrollToItem(
+            scrollState.scrollToItem(
                 index = messages.size - 1)
         }
     }
@@ -184,7 +189,9 @@ private fun ChatScreenContent(
         ChatInput(
             onMessageChange = { messageContent ->
                 chatViewModel.insertMessageToFirebase(chatRoomUUID,messageContent,registerUUID)},
-            modifier = Modifier.background(primaryColor)
+            modifier = Modifier.background(primaryColor), onFocusEvent = {
+                isChatInputFocus = it
+            }
         )
     }
 }
