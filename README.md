@@ -17,6 +17,7 @@ Native Android chat application written in Kotlin using Jetpack Compose
    * Message Status (RECEIVED - READ) - PENDING: After push notification.
    * Friend Status (PENDING, ACCEPTED, CANCELED, BLOCKED)
    * New Message Alert
+   * Navigation Animation Between Sceens
 
 * Tech-stack
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
