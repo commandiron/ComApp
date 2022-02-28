@@ -39,5 +39,6 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
    * Dark theme ❌
    * Push notification ❌
    * Login via Google ❌
+   * Swipe - Gestures ❌
 
 
