@@ -2,6 +2,7 @@ package com.example.chatapp_by_command.domain.repository
 
 import android.net.Uri
 import com.example.chatapp_by_command.domain.model.*
+import com.example.chatapp_by_command.domain.model.enumclasses.UserStatus
 import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {

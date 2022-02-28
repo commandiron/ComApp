@@ -1,6 +1,5 @@
 package com.example.chatapp_by_command.presentation.login
 
-import androidx.compose.material.SnackbarHostState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,11 +7,9 @@ import com.example.chatapp_by_command.domain.model.Response
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import com.example.chatapp_by_command.domain.use_case.UseCases
-import com.example.chatapp_by_command.core.SnackbarController
-import com.example.chatapp_by_command.domain.model.UserStatus
+import com.example.chatapp_by_command.domain.model.enumclasses.UserStatus
 import javax.inject.Inject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(

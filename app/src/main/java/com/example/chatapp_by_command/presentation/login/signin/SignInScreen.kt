@@ -15,7 +15,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.SoftwareKeyboardController
@@ -27,14 +26,12 @@ import androidx.navigation.NavController
 import com.example.chatapp_by_command.core.SnackbarController
 import com.example.chatapp_by_command.presentation.LoginOutlinedTextFieldCom
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
-import com.example.chatapp_by_command.presentation.components.LoginOutlinedTextFieldPasswordCom
+import com.example.chatapp_by_command.presentation.common_components.LoginOutlinedTextFieldPasswordCom
 import com.example.chatapp_by_command.presentation.login.LoginViewModel
 import com.example.chatapp_by_command.ui.theme.backgroundColor
 import com.example.chatapp_by_command.ui.theme.backgroundColorDark
 import com.example.chatapp_by_command.ui.theme.primaryColor
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.launch
 
 
 @ExperimentalMaterialApi
@@ -42,6 +39,7 @@ import kotlinx.coroutines.launch
 @Composable
 @InternalCoroutinesApi
 fun SignInScreen(
+    emailFromSignUp: String,
     loginViewModel: LoginViewModel = hiltViewModel(),
     navController: NavController,
     snackbarHostState: SnackbarHostState,
@@ -58,13 +56,13 @@ fun SignInScreen(
     //For test user information
     var textEmail: String? by remember {mutableStateOf("")}//gimli@gmail.com
     var textPassword: String? by remember { mutableStateOf("") }//123456
-
+    textEmail = emailFromSignUp
 
     //Check User Authenticated
     val isUserAuthenticated = loginViewModel.isUserAuthenticatedState.value
     LaunchedEffect(Unit) {
         if(isUserAuthenticated) {
-            navController.navigate(BottomNavItem.Profile.screen_route)
+            navController.navigate(BottomNavItem.Profile.fullRoute)
         }
     }
 
@@ -72,7 +70,7 @@ fun SignInScreen(
     val isUserSignIn = loginViewModel.isUserSignInState.value
     LaunchedEffect(key1 = isUserSignIn){
         if (isUserSignIn) {
-            navController.navigate(BottomNavItem.Profile.screen_route)
+            navController.navigate(BottomNavItem.Profile.fullRoute)
         }
     }
 
@@ -80,7 +78,7 @@ fun SignInScreen(
     val isUserSignUp = loginViewModel.isUserSignUpState.value
     LaunchedEffect(key1 = isUserSignUp){
         if (isUserSignUp) {
-            navController.navigate(BottomNavItem.Profile.screen_route)
+            navController.navigate(BottomNavItem.Profile.fullRoute)
         }
     }
 
@@ -125,7 +123,6 @@ fun SignInScreen(
                     }
                 }
 
-
                 Box(modifier = Modifier.padding(2.dp)){
                     LoginOutlinedTextFieldPasswordCom(textPassword!!,"Password", Icons.Default.Password) {
                         textPassword = it
@@ -156,7 +153,14 @@ fun SignInScreen(
                 modifier = Modifier.padding(bottom = 30.dp)) {
                 Text(text = "Don't have an account?", fontSize = 14.sp, color = Color.Black)
                 Text(text = " Sign up", fontSize = 14.sp, color = Color.Red, modifier = Modifier.clickable {
-                    navController.navigate(BottomNavItem.SignUp.screen_route)
+
+                    if(textEmail == ""){
+                        navController.popBackStack()
+                        navController.navigate(BottomNavItem.SignUp.fullRoute)
+                    }else{
+                        navController.popBackStack()
+                        navController.navigate(BottomNavItem.SignUp.screen_route + "?emailFromSignIn=$textEmail")
+                    }
                 })
             }
         }

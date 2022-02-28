@@ -50,8 +50,7 @@ fun SplashScreen(navController: NavHostController, systemUiController: SystemUiC
         delay(4000)
 
         navController.popBackStack()
-        navController.navigate(BottomNavItem.SignIn.screen_route)
-
+        navController.navigate(BottomNavItem.SignIn.fullRoute)
 
         systemUiController.setNavigationBarColor(primaryColor)
         systemUiController.setStatusBarColor(color = backgroundColor)

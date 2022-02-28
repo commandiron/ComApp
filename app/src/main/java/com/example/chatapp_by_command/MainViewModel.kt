@@ -1,9 +1,9 @@
-package com.example.chatapp_by_command.ui.theme
+package com.example.chatapp_by_command
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.chatapp_by_command.domain.model.Response
-import com.example.chatapp_by_command.domain.model.UserStatus
+import com.example.chatapp_by_command.domain.model.enumclasses.UserStatus
 import com.example.chatapp_by_command.domain.use_case.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect

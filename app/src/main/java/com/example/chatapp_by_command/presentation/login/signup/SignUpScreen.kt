@@ -25,7 +25,7 @@ import androidx.navigation.NavController
 import com.example.chatapp_by_command.core.SnackbarController
 import com.example.chatapp_by_command.presentation.LoginOutlinedTextFieldCom
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
-import com.example.chatapp_by_command.presentation.components.LoginOutlinedTextFieldPasswordCom
+import com.example.chatapp_by_command.presentation.common_components.LoginOutlinedTextFieldPasswordCom
 import com.example.chatapp_by_command.presentation.login.LoginViewModel
 import com.example.chatapp_by_command.ui.theme.backgroundColor
 import com.example.chatapp_by_command.ui.theme.backgroundColorDark
@@ -38,6 +38,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @Composable
 @InternalCoroutinesApi
 fun SignUpScreen(
+    emailFromSignIn: String,
     loginViewModel: LoginViewModel = hiltViewModel(),
     navController: NavController,
     snackbarHostState: SnackbarHostState,
@@ -55,12 +56,13 @@ fun SignUpScreen(
     //For test user information
     var textEmail: String? by remember { mutableStateOf("") }//gimli@gmail.com
     var textPassword: String? by remember { mutableStateOf("") }//123456
+    textEmail = emailFromSignIn
 
     //Check User Authenticated
     val isUserAuthenticated = loginViewModel.isUserAuthenticatedState.value
     LaunchedEffect(Unit) {
         if(isUserAuthenticated) {
-            navController.navigate(BottomNavItem.Profile.screen_route)
+            navController.navigate(BottomNavItem.Profile.fullRoute)
         }
     }
 
@@ -68,7 +70,7 @@ fun SignUpScreen(
     val isUserSignIn = loginViewModel.isUserSignInState.value
     LaunchedEffect(key1 = isUserSignIn){
         if (isUserSignIn) {
-            navController.navigate(BottomNavItem.Profile.screen_route)
+            navController.navigate(BottomNavItem.Profile.fullRoute)
         }
     }
 
@@ -76,7 +78,7 @@ fun SignUpScreen(
     val isUserSignUp = loginViewModel.isUserSignUpState.value
     LaunchedEffect(key1 = isUserSignUp){
         if (isUserSignUp) {
-            navController.navigate(BottomNavItem.Profile.screen_route)
+            navController.navigate(BottomNavItem.Profile.fullRoute)
         }
     }
 
@@ -150,7 +152,14 @@ fun SignUpScreen(
                 modifier = Modifier.padding(bottom = 30.dp)) {
                 Text(text = "Already have an account?", fontSize = 14.sp, color = Color.Black)
                 Text(text = " Log in", fontSize = 14.sp, color = Color.Red, modifier = Modifier.clickable {
-                    navController.navigate(BottomNavItem.SignIn.screen_route)
+
+                    if(textEmail == ""){
+                        navController.popBackStack()
+                        navController.navigate(BottomNavItem.SignIn.fullRoute)
+                    }else{
+                        navController.popBackStack()
+                        navController.navigate(BottomNavItem.SignIn.screen_route + "?emailFromSignUp=$textEmail")
+                    }
                 })
             }
         }

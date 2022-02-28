@@ -17,7 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.chatapp_by_command.core.SnackbarController
 import com.example.chatapp_by_command.domain.model.MyUser
-import com.example.chatapp_by_command.domain.model.UserStatus
+import com.example.chatapp_by_command.domain.model.enumclasses.UserStatus
 import com.example.chatapp_by_command.presentation.*
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
 import com.example.chatapp_by_command.presentation.profile.ClickableToGalleryProfilePictureImage
@@ -70,7 +70,7 @@ fun ProfileScreen(
     LaunchedEffect(key1 = isUserSignOut){
         if(isUserSignOut){
             navController.popBackStack()
-            navController.navigate(BottomNavItem.SignIn.screen_route)
+            navController.navigate(BottomNavItem.SignIn.fullRoute)
         }
     }
 

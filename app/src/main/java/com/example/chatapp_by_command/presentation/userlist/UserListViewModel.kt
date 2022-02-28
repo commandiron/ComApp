@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.chatapp_by_command.core.Constants
 import com.example.chatapp_by_command.domain.model.FriendListRegister
 import com.example.chatapp_by_command.domain.model.FriendListUiRow
-import com.example.chatapp_by_command.domain.model.FriendStatus
+import com.example.chatapp_by_command.domain.model.enumclasses.FriendStatus
 import com.example.chatapp_by_command.domain.model.Response
 import com.example.chatapp_by_command.domain.use_case.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel

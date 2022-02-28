@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import com.example.chatapp_by_command.domain.model.Response
 import com.example.chatapp_by_command.domain.model.MyUser
-import com.example.chatapp_by_command.domain.model.UserStatus
+import com.example.chatapp_by_command.domain.model.enumclasses.UserStatus
 import com.example.chatapp_by_command.domain.use_case.UseCases
 import kotlinx.coroutines.delay
 import javax.inject.Inject

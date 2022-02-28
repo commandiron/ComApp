@@ -2,7 +2,6 @@ package com.example.chatapp_by_command.presentation.userlist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -24,8 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.chatapp_by_command.domain.model.FriendListUiRow
-import com.example.chatapp_by_command.presentation.chat.components.chatrow.MessageStatus
-import com.example.chatapp_by_command.ui.theme.primaryColor
+import com.example.chatapp_by_command.domain.model.enumclasses.MessageStatus
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -3,34 +3,35 @@ package com.example.chatapp_by_command.view
 
 import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.focusable
+import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.SnackbarHostState
+import androidx.compose.material.rememberSwipeableState
+import androidx.compose.material.swipeable
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.chatapp_by_command.domain.model.ChatMessage
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
 import com.example.chatapp_by_command.presentation.chat.ChatViewModel
 import com.example.chatapp_by_command.presentation.chat.components.*
 import com.example.chatapp_by_command.presentation.chat.components.ChatInput
-import com.example.chatapp_by_command.presentation.chat.components.chatrow.MessageStatus
-import kotlinx.coroutines.launch
+import com.example.chatapp_by_command.domain.model.enumclasses.MessageStatus
 import java.text.SimpleDateFormat
 import java.util.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.SoftwareKeyboardController
+import androidx.compose.ui.unit.dp
 import com.example.chatapp_by_command.core.SnackbarController
 import com.example.chatapp_by_command.domain.model.MessageRegister
 import com.example.chatapp_by_command.domain.model.MyUser
@@ -39,7 +40,10 @@ import com.example.chatapp_by_command.ui.theme.backgroundColor
 import com.example.chatapp_by_command.ui.theme.primaryColor
 import com.google.accompanist.insets.*
 import kotlinx.coroutines.delay
-import com.google.accompanist.insets.imePadding as imePadding
+import androidx.compose.material.FractionalThreshold
+
+
+
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -69,7 +73,7 @@ fun ChatScreen(
     ChatScreenContent(chatRoomUUID, opponentUUID, registerUUID, chatViewModel, navController, keyboardController)
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, androidx.compose.material.ExperimentalMaterialApi::class)
 @Composable
 private fun ChatScreenContent(
     chatRoomUUID: String,
@@ -79,31 +83,8 @@ private fun ChatScreenContent(
     navController: NavHostController,
     keyboardController: SoftwareKeyboardController) {
 
-    val context = LocalContext.current
+    //Get Messages
     val messages = chatViewModel.messages
-
-    //Scroll Lazy Column //Bu kısım performansı düşürüyor gibi görünüyor.
-    val scrollState = rememberLazyListState()
-    val messagesLoadedFirstTime = chatViewModel.messagesLoadedFirstTime.value
-    val messageInserted = chatViewModel.messageInserted.value
-    var isChatInputFocus by remember { mutableStateOf(false) }
-    LaunchedEffect(key1 = messagesLoadedFirstTime, messages,messageInserted){
-        if(messages.size > 0){
-            scrollState.scrollToItem(
-                index = messages.size - 1)
-        }
-    }
-
-    val imePaddingValues = rememberInsetsPaddingValues(insets = LocalWindowInsets.current.ime)
-    var imeBottomPadding = imePaddingValues.calculateBottomPadding().value.toInt()
-
-    //Klavye alttan çekince swipe etme olayını çözdüm fakat çok atlıyor. ara değerleri çok hesaplamadığı için olabilir.
-    LaunchedEffect(key1 = imeBottomPadding){
-        if(messages.size > 0){
-            scrollState.scrollToItem(
-                index = messages.size - 1)
-        }
-    }
 
     //Load Oppoenent Profile
     LaunchedEffect(key1 = Unit){
@@ -116,11 +97,37 @@ private fun ChatScreenContent(
     val opponentPictureUrl = opponentProfileFromFirebase.userProfilePictureUrl
     val opponentStatus = opponentProfileFromFirebase.status
 
+    //Show Profile Picture
     var showDialog by remember { mutableStateOf(false) }
     if (showDialog) {
         ProfilePictureDialog(opponentPictureUrl) {
             showDialog = !showDialog
         }
+    }
+
+    //Scroll Lazy Column
+    // Bu kısım performansı düşürüyor gibi görünüyor.
+    //Chat screen'e ilk girişte screen animasyonu tekliyor. Belki bu kısmı çalıştırmadan delay verebilirim.
+    //Ya da kaydırılmış halini hafızada tutabilirim, eğer yapılabiliyorsa. Çünkü her chat screen açıldığında
+    //scrollstate ile yukarıdan aşağı kaydırmak zorunda kalıyor. aslında default hali en altta olmalı.
+    //Lazy column'u kendim yazabilirim bu sayede scrollstate'i hep aşağıda tutabilirim, içeriden.
+    val scrollState = rememberLazyListState(initialFirstVisibleItemIndex = messages.size)
+    val messagesLoadedFirstTime = chatViewModel.messagesLoadedFirstTime.value
+    val messageInserted = chatViewModel.messageInserted.value
+    var isChatInputFocus by remember { mutableStateOf(false) } //bunu alarakta klavye alltan çıkınca lazycolumn'u kaydırabiliyorum ama anlık oluyor.
+    LaunchedEffect(key1 = messagesLoadedFirstTime, messages,messageInserted){
+        if(messages.size > 0){
+            scrollState.scrollToItem(
+                index = messages.size - 1)
+        }
+    }
+    val imePaddingValues = rememberInsetsPaddingValues(insets = LocalWindowInsets.current.ime)
+    val imeBottomPadding = imePaddingValues.calculateBottomPadding().value.toInt()
+    //Klavye alttan çekince swipe etme olayını çözdüm fakat çok atlıyor. Smooth değil. Ara değerleri çok hesaplamadığı için olabilir.
+    LaunchedEffect(key1 = imeBottomPadding){
+        if(messages.size > 0){
+            scrollState.scrollToItem(
+                index = messages.size - 1) }
     }
 
     //Compose Components
@@ -134,6 +141,8 @@ private fun ChatScreenContent(
             .background(Color(0xffFBE9E7))
     ) {
 
+        val context = LocalContext.current
+
         ChatAppBar(
             title = "$opponentName $opponentSurname",
             description = opponentStatus.lowercase(),
@@ -142,12 +151,12 @@ private fun ChatScreenContent(
                 Toast.makeText(context, "User Profile Clicked", Toast.LENGTH_SHORT).show()
             }, onBackArrowClick = {
                 navController.popBackStack()
-                navController.navigate(BottomNavItem.UserList.screen_route)
+                navController.navigate(BottomNavItem.UserList.fullRoute)
             }, onUserProfilePictureClick = {
                 showDialog = true
             }, onMorevertBlockUserClick = {
                 chatViewModel.blockFriendToFirebase(registerUUID)
-                navController.navigate(BottomNavItem.UserList.screen_route)
+                navController.navigate(BottomNavItem.UserList.fullRoute)
             }
         )
 

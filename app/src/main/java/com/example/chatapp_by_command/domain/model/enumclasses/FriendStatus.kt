@@ -1,4 +1,4 @@
-package com.example.chatapp_by_command.domain.model
+package com.example.chatapp_by_command.domain.model.enumclasses
 
 enum class FriendStatus {
     PENDING, ACCEPTED, CANCELED, BLOCKED

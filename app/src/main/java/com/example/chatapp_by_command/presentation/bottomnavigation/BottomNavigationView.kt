@@ -57,7 +57,6 @@ fun BottomNavigationView(navController: NavController, bottomBarState: Boolean) 
                         selectedContentColor = selectedContentColor,
                         onClick = {
                             navController.navigate(item.screen_route) {
-
                                 navController.graph.startDestinationRoute?.let { screen_route ->
                                     popUpTo(screen_route) {
                                         saveState = true

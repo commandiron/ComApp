@@ -9,5 +9,4 @@ data class FriendListRegister(
     var acceptorUUID: String = "",
     var status: String = "",
     var lastMessage: ChatMessage = ChatMessage()
-) {
-}
+)

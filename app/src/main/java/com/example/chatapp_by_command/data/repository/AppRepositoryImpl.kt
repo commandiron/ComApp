@@ -5,8 +5,10 @@ import com.example.chatapp_by_command.core.Constants.ERROR_MESSAGE
 import com.example.chatapp_by_command.core.Constants.NO_CHATROOM_IN_FIREBASE_DATABASE
 import com.example.chatapp_by_command.domain.model.*
 import com.example.chatapp_by_command.domain.model.Response.*
+import com.example.chatapp_by_command.domain.model.enumclasses.FriendStatus
+import com.example.chatapp_by_command.domain.model.enumclasses.UserStatus
 import com.example.chatapp_by_command.domain.repository.AppRepository
-import com.example.chatapp_by_command.presentation.chat.components.chatrow.MessageStatus
+import com.example.chatapp_by_command.domain.model.enumclasses.MessageStatus
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -721,7 +723,8 @@ class AppRepositoryImpl  @Inject constructor(
 
                     job2.invokeOnCompletion {
                         for(i in unReadMessageKeys){
-                            databaseRefForLoadMessages.child(i).updateChildren(mapOf(Pair("/status/",MessageStatus.READ)))
+                            databaseRefForLoadMessages.child(i).updateChildren(mapOf(Pair("/status/",
+                                MessageStatus.READ)))
                         }
                     }
 

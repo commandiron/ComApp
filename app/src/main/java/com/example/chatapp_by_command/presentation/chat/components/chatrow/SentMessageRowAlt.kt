@@ -10,15 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
-import com.example.chatapp_by_command.presentation.chat.components.chatrow.MessageStatus
+import com.example.chatapp_by_command.domain.model.enumclasses.MessageStatus
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.MessageTimeText
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.SubcomposeColumn
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.chatflexboxlayout.ChatFlexBoxLayout
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.quotedmessagealt.QuotedMessageAlt
 import com.example.chatapp_by_command.ui.theme.SentMessageColor
 import com.example.chatapp_by_command.ui.theme.SentQuoteColor
-import com.google.accompanist.insets.LocalWindowInsets
-import com.google.accompanist.insets.rememberInsetsPaddingValues
 
 /**
  * This sent message row uses overloaded [SubcomposeColumn] function only with **content** arg

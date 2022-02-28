@@ -32,10 +32,12 @@ fun NavigationGraph(
     keyboardController: SoftwareKeyboardController
 ) {
 
-    AnimatedNavHost(navController, startDestination = BottomNavItem.Splash.screen_route) {
+    AnimatedNavHost(navController, startDestination = BottomNavItem.Splash.fullRoute) {
 
+
+        //SPLASH SCREEN
         composable(
-            BottomNavItem.Splash.screen_route,
+            BottomNavItem.Splash.fullRoute,
             enterTransition = {
                 when(initialState.destination.route){
                     else -> null
@@ -44,7 +46,7 @@ fun NavigationGraph(
             }, exitTransition = {
 
                 when (targetState.destination.route) {
-                    BottomNavItem.SignIn.screen_route -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Up, animationSpec = tween(700))
+                    BottomNavItem.SignIn.fullRoute -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Up, animationSpec = tween(700))
                     else -> null
                 }
             }) {
@@ -54,55 +56,86 @@ fun NavigationGraph(
                 systemUiController = systemUiController)
         }
 
+
+        //SIGNIN SCREEN
         composable(
-            BottomNavItem.SignIn.screen_route,
+            BottomNavItem.SignIn.fullRoute,
+            arguments = listOf(
+                navArgument("emailFromSignUp"){
+                type = NavType.StringType
+                    defaultValue = ""
+            }),
             enterTransition = {
                 when(initialState.destination.route){
-                    BottomNavItem.SignUp.screen_route -> slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
+                    BottomNavItem.SignUp.fullRoute->
+                        slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
                     else -> null
                 }
 
             }, exitTransition = {
 
                 when (targetState.destination.route) {
-                    BottomNavItem.SignUp.screen_route -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
+                    BottomNavItem.SignUp.fullRoute -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
                     else -> null
                 }
             }) {
+
+            val emailFromSignUp = remember{
+                it.arguments?.getString("emailFromSignUp")
+            }
 
             SignInScreen(
+                emailFromSignUp = emailFromSignUp ?: "",
                 navController = navController,
                 snackbarHostState = snackbarHostState,
                 keyboardController = keyboardController)
         }
 
+
+        //SIGNUP SCREEN
         composable(
-            BottomNavItem.SignUp.screen_route,
+            BottomNavItem.SignUp.fullRoute,
+            arguments = listOf(
+                navArgument("emailFromSignIn"){
+                    type = NavType.StringType
+                        defaultValue = ""
+            }),
             enterTransition = {
                 when(initialState.destination.route){
-                    BottomNavItem.SignIn.screen_route -> slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
+                    BottomNavItem.SignIn.fullRoute ->
+                        slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
                     else -> null
                 }
 
             }, exitTransition = {
 
                 when (targetState.destination.route) {
-                    BottomNavItem.SignIn.screen_route -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
+                    BottomNavItem.SignIn.fullRoute ->
+                        slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
                     else -> null
                 }
             }) {
+
+            val emailFromSignIn = remember{
+                it.arguments?.getString("emailFromSignIn")
+            }
             SignUpScreen(
+                emailFromSignIn = emailFromSignIn ?: "",
                 navController = navController,
                 snackbarHostState = snackbarHostState,
                 keyboardController = keyboardController)
         }
 
+
+        //PROFILE SCREEN
         composable(
-            BottomNavItem.Profile.screen_route,
+            BottomNavItem.Profile.fullRoute,
             enterTransition = {
                 when(initialState.destination.route){
-                    BottomNavItem.SignIn.screen_route -> slideIntoContainer(AnimatedContentScope.SlideDirection.Up, animationSpec = tween(700))
-                    BottomNavItem.SignUp.screen_route -> slideIntoContainer(AnimatedContentScope.SlideDirection.Up, animationSpec = tween(700))
+                    BottomNavItem.SignIn.fullRoute ->
+                        slideIntoContainer(AnimatedContentScope.SlideDirection.Up, animationSpec = tween(700))
+                    BottomNavItem.SignUp.fullRoute ->
+                        slideIntoContainer(AnimatedContentScope.SlideDirection.Up, animationSpec = tween(700))
 
                     else -> null
                 }
@@ -119,18 +152,20 @@ fun NavigationGraph(
                 keyboardController= keyboardController)
         }
 
+
+        //USERLIST SCREEN
         composable(
-            BottomNavItem.UserList.screen_route,
+            BottomNavItem.UserList.fullRoute,
             enterTransition = {
                 when(initialState.destination.route){
-                    BottomNavItem.Chat.screen_route + "/{chatroomUUID}" + "/{opponentUUID}" + "/{registerUUID}" -> slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
+                    BottomNavItem.Chat.fullRoute -> slideIntoContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
                     else -> null
                 }
 
             }, exitTransition = {
 
                 when (targetState.destination.route) {
-                    BottomNavItem.Chat.screen_route + "/{chatroomUUID}" + "/{opponentUUID}" + "/{registerUUID}" -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
+                    BottomNavItem.Chat.fullRoute -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
 
                     else -> null
                 }
@@ -141,8 +176,10 @@ fun NavigationGraph(
                 keyboardController = keyboardController)
         }
 
+
+        //CHAT SCREEN
         composable(
-            BottomNavItem.Chat.screen_route + "/{chatroomUUID}" + "/{opponentUUID}" + "/{registerUUID}",
+            BottomNavItem.Chat.fullRoute,
             arguments = listOf(
                 navArgument("chatroomUUID"){
                     type = NavType.StringType
@@ -153,14 +190,14 @@ fun NavigationGraph(
                 }),
             enterTransition = {
                 when(initialState.destination.route){
-                    BottomNavItem.UserList.screen_route -> slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
+                    BottomNavItem.UserList.fullRoute -> slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
                     else -> null
                 }
 
             }, exitTransition = {
 
                 when (targetState.destination.route) {
-                    BottomNavItem.UserList.screen_route -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
+                    BottomNavItem.UserList.fullRoute -> slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
                     else -> null
                 }
             }) {
@@ -171,7 +208,6 @@ fun NavigationGraph(
             val opponentUUID = remember{
                 it.arguments?.getString("opponentUUID")
             }
-
             val registerUUID = remember{
                 it.arguments?.getString("registerUUID")
             }
@@ -182,7 +218,7 @@ fun NavigationGraph(
                 registerUUID= registerUUID?: "",
                 navController = navController,
                 snackbarHostState = snackbarHostState,
-                keyboardController = keyboardController!!)
+                keyboardController = keyboardController)
 
         }
     }
