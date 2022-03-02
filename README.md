@@ -39,7 +39,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
  
  * Todo ✔️
    * Firebase request code optimization & cleaning ❌
-   * Dark theme ❌
+   * Dark theme ✔️
    * Push notification ✔️ Listening only offline & chat navigation when notf. pressed ❌
    * Login via Google ❌
    * Swipe - Gestures ❌
