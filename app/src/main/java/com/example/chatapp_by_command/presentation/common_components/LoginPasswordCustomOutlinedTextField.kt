@@ -19,7 +19,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoginOutlinedTextFieldPasswordCom(entry: String, hint: String, icon: ImageVector, onChange:(String) -> Unit = {}){
+fun LoginPasswordCustomOutlinedTextField(entry: String, hint: String, icon: ImageVector, onChange:(String) -> Unit = {}){
 
     val fullWidthModifier = Modifier.fillMaxWidth().padding(2.dp)
 

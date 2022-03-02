@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoginOutlinedTextFieldCom(entry: String, hint: String, icon: ImageVector, onChange:(String) -> Unit = {}){
+fun LoginCustomOutlinedTextField(entry: String, hint: String, icon: ImageVector, onChange:(String) -> Unit = {}){
 
     val fullWidthModifier = Modifier.fillMaxWidth().padding(2.dp)
 

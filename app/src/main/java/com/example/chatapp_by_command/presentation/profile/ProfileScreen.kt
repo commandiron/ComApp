@@ -1,6 +1,5 @@
 package com.example.chatapp_by_command.view
 
-import android.net.Uri
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
@@ -12,14 +11,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.SoftwareKeyboardController
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.chatapp_by_command.core.SnackbarController
 import com.example.chatapp_by_command.domain.model.MyUser
 import com.example.chatapp_by_command.domain.model.enumclasses.UserStatus
-import com.example.chatapp_by_command.presentation.*
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
+import com.example.chatapp_by_command.presentation.common_components.ProfileCustomTextField
+import com.example.chatapp_by_command.presentation.common_components.LogOutCustomText
+import com.example.chatapp_by_command.presentation.common_components.ProfileCustomText
 import com.example.chatapp_by_command.presentation.profile.ClickableToGalleryProfilePictureImage
 import com.example.chatapp_by_command.presentation.profile.ProfileAppBar
 import com.example.chatapp_by_command.presentation.profile.ProfileViewModel
@@ -62,6 +65,12 @@ fun ProfileScreen(
     var surName by remember { mutableStateOf("")}
     surName = userDataFromFirebase.userSurName
 
+    var bio by remember { mutableStateOf("")}
+    //bio = userDataFromFirebase.userBio
+
+    var phoneNumber by remember { mutableStateOf("")}
+    //bio = userDataFromFirebase.userPhoneNumber
+
     var userDataPictureUrl by remember {mutableStateOf("")}
     userDataPictureUrl = userDataFromFirebase.userProfilePictureUrl
 
@@ -73,9 +82,6 @@ fun ProfileScreen(
             navController.navigate(BottomNavItem.SignIn.fullRoute)
         }
     }
-
-    //ImageUri For Upload Image In Firebase Storage
-    var imageUriForFirebaseStorageFromGallery by remember { mutableStateOf<Uri?>(null)}
 
     //Compose Components
     Column {
@@ -98,26 +104,67 @@ fun ProfileScreen(
                     CircularProgressIndicator(color = Color.White)
                 }
             }else{
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally) {
                     Text("Mail: " + email)
 
                     ClickableToGalleryProfilePictureImage(userDataPictureUrl){
-                        //Profil picture değiştirdiğimde ekranda bir tekleme oluyor, bunu nasıl çözebilirim?
-                        //Profil picture boş hali yeşil gözüküyor onu güzel bir boş kafa ile değiştir.
-                        imageUriForFirebaseStorageFromGallery = it
-                        if(imageUriForFirebaseStorageFromGallery != null){
-                            profileViewModel.uploadPictureToFirebase(imageUriForFirebaseStorageFromGallery!!, name, surName)
+                        if(it != null){
+                            profileViewModel.uploadPictureToFirebase(it, name, surName)
                         }
                     }
 
-                    OutlinedTextFieldNameCom(name,"Name",{name = it},{
-
+                    ProfileCustomTextField(name,"Name",{name = it},{
                         profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName)
                     })
 
-                    OutlinedTextFieldSurnameCom(surName,"Surname",{surName = it},{
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    ProfileCustomTextField(surName,"Surname",{surName = it},{
                         profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName)
                     })
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    ProfileCustomText(
+                        text ="Enter your name and last name.",
+                        modifier = Modifier
+                            .padding(10.dp, 0.dp, 0.dp, 0.dp)
+                            .align(Alignment.Start))
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    ProfileCustomTextField(bio,"Bio",{bio = it},{
+                        //profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName)
+                    })
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    ProfileCustomText(
+                        text ="Any details about you.",
+                        modifier = Modifier
+                            .padding(10.dp, 0.dp, 0.dp, 0.dp)
+                            .align(Alignment.Start))
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    ProfileCustomTextField(phoneNumber,"Phone Number",{phoneNumber = it},{
+                        //profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName)
+                    }, keyboardType = KeyboardType.Phone)
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    ProfileCustomText(
+                        text ="Enter your phone number.",
+                        modifier = Modifier
+                        .padding(10.dp, 0.dp, 0.dp, 0.dp)
+                        .align(Alignment.Start))
+
+                    Spacer(modifier = Modifier.height(120.dp))
+
+                    LogOutCustomText{
+                        profileViewModel.setUserStatusToFirebaseAndSignOut(UserStatus.OFFLINE)
+                    }
                 }
             }
         }

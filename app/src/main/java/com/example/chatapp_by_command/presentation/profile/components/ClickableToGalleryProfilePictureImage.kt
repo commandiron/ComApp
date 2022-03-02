@@ -20,13 +20,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.example.chatapp_by_command.R
 
 @Composable
-fun ClickableToGalleryProfilePictureImage(profilePictureUrlForCheck: String, onSelect:(Uri?) -> Unit = {}) {
+fun ClickableToGalleryProfilePictureImage(
+    profilePictureUrlForCheck: String,
+    size: Dp = 100.dp,
+    onSelect:(Uri?) -> Unit = {}) {
     val context = LocalContext.current
 
     var imageUri by remember {
@@ -63,7 +67,7 @@ fun ClickableToGalleryProfilePictureImage(profilePictureUrlForCheck: String, onS
                 modifier = Modifier
                     .padding(16.dp)
                     .clickable { launcher.launch("image/*") }
-                    .size(200.dp)
+                    .size(size)
                     .clip(CircleShape)
                     .border(2.dp, Color.Gray, CircleShape),
                 contentScale = ContentScale.Crop)
@@ -74,19 +78,19 @@ fun ClickableToGalleryProfilePictureImage(profilePictureUrlForCheck: String, onS
                     modifier = Modifier
                         .padding(16.dp)
                         .clickable { launcher.launch("image/*") }
-                        .size(200.dp)
+                        .size(size)
                         .clip(CircleShape)
                         .border(2.dp, Color.Gray, CircleShape),
                     contentScale = ContentScale.Crop)
             }else{
                 Image(painter = rememberImagePainter(
-                    request = ImageRequest.Builder(context).data(R.drawable.ic_launcher_background)
+                    request = ImageRequest.Builder(context).data(R.mipmap.empty_profile_picture)
                         .build()),
                     contentDescription = null,
                     modifier = Modifier
                         .padding(16.dp)
                         .clickable { launcher.launch("image/*") }
-                        .size(200.dp)
+                        .size(size)
                         .clip(CircleShape)
                         .border(2.dp, Color.Gray, CircleShape),
                     contentScale = ContentScale.Fit)

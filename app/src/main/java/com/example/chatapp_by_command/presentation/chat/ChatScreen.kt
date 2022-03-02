@@ -64,8 +64,6 @@ fun ChatScreen(
         }
     }
 
-    //Profil fotoğrafına tıklayınca fotoğrafın büyümesi gerekiyor.
-    //Chat sırasında keyboard açıldığında son mesaj yukarı gelmiyor. Onu bir şekilde halletmem lazım.
     //Performans sorunu var, özellikle son mesaja scrollstate ile scroll etmeyi çalıştırınca bu sorun çıktı.
 
     chatViewModel.loadMessagesFromFirebase(chatRoomUUID, opponentUUID, registerUUID)
@@ -123,7 +121,7 @@ private fun ChatScreenContent(
     }
     val imePaddingValues = rememberInsetsPaddingValues(insets = LocalWindowInsets.current.ime)
     val imeBottomPadding = imePaddingValues.calculateBottomPadding().value.toInt()
-    //Klavye alttan çekince swipe etme olayını çözdüm fakat çok atlıyor. Smooth değil. Ara değerleri çok hesaplamadığı için olabilir.
+    //Klavye alttan çekince swipe etme olayını çözdüm fakat çok atlıyor. Smooth değil. Özellikle kapatırken. Ara değerleri çok hesaplamadığı için olabilir.
     LaunchedEffect(key1 = imeBottomPadding){
         if(messages.size > 0){
             scrollState.scrollToItem(

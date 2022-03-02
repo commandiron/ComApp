@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.chatapp_by_command.presentation.OutlinedTextFieldNameCom
+import com.example.chatapp_by_command.presentation.AlertDialogCustomOutlinedTextField
 
 @Composable
 fun AlertDialog(
@@ -50,7 +50,7 @@ fun AlertDialog(
         text = {
             Column() {
                 Text(text = dialogText)
-                OutlinedTextFieldNameCom(entry = emailInput, hint = "email", onChange = {emailInput = it})
+                AlertDialogCustomOutlinedTextField(entry = emailInput, hint = "email", onChange = {emailInput = it})
             }
         }
     )

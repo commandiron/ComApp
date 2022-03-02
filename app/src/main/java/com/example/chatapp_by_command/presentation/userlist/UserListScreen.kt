@@ -32,6 +32,8 @@ fun UserListScreen(
     snackbarHostState: SnackbarHostState,
     keyboardController: SoftwareKeyboardController) {
 
+    //Belki bu screen'de listede mailler yerine isim soyad gösterebilirim.
+
     //Set SnackBar
     val toastMessage = userListViewModel.toastMessage.value
     LaunchedEffect(key1 = toastMessage){

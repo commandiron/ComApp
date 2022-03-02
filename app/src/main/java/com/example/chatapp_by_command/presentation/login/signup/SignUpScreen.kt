@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.chatapp_by_command.core.SnackbarController
-import com.example.chatapp_by_command.presentation.LoginOutlinedTextFieldCom
+import com.example.chatapp_by_command.presentation.LoginCustomOutlinedTextField
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
-import com.example.chatapp_by_command.presentation.common_components.LoginOutlinedTextFieldPasswordCom
+import com.example.chatapp_by_command.presentation.common_components.LoginPasswordCustomOutlinedTextField
 import com.example.chatapp_by_command.presentation.login.LoginViewModel
 import com.example.chatapp_by_command.ui.theme.backgroundColor
 import com.example.chatapp_by_command.ui.theme.backgroundColorDark
@@ -56,7 +56,9 @@ fun SignUpScreen(
     //For test user information
     var textEmail: String? by remember { mutableStateOf("") }//gimli@gmail.com
     var textPassword: String? by remember { mutableStateOf("") }//123456
-    textEmail = emailFromSignIn
+    LaunchedEffect(key1 = Unit){
+        textEmail = emailFromSignIn
+    }
 
     //Check User Authenticated
     val isUserAuthenticated = loginViewModel.isUserAuthenticatedState.value
@@ -98,7 +100,7 @@ fun SignUpScreen(
                 .padding(20.dp)) {
             Column(horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
-                modifier = Modifier.padding(bottom = 30.dp)) {
+                modifier = Modifier.padding(bottom = 120.dp)) {
 
                 Icon(
                     modifier = Modifier
@@ -118,12 +120,12 @@ fun SignUpScreen(
                     modifier = Modifier.padding(2.dp, 2.dp, 2.dp, 30.dp))
 
                 Box(modifier = Modifier.padding(2.dp)){
-                    LoginOutlinedTextFieldCom(textEmail!!,"Email", Icons.Default.Email) {
+                    LoginCustomOutlinedTextField(textEmail!!,"Email", Icons.Default.Email) {
                         textEmail = it
                     }
                 }
                 Box(modifier = Modifier.padding(2.dp)){
-                    LoginOutlinedTextFieldPasswordCom(textPassword!!,"Password", Icons.Default.Password) {
+                    LoginPasswordCustomOutlinedTextField(textPassword!!,"Password", Icons.Default.Password) {
                         textPassword = it
                     }
                 }

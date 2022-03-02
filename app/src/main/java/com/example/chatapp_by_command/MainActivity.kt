@@ -1,6 +1,8 @@
 package com.example.chatapp_by_command
 
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -79,7 +81,6 @@ fun MainScreenView(){
     val systemUiController = rememberSystemUiController()
     val darkIcons = MaterialTheme.colors.isLight
     SideEffect {
-
         //System bar kalın neden anlamadım.
         //systemUiController.isNavigationBarContrastEnforced()
     }
