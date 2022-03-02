@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -20,8 +21,6 @@ import com.example.chatapp_by_command.presentation.chat.components.chatrow.Recip
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.SubcomposeColumn
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.chatflexboxlayout.ChatFlexBoxLayout
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.quotedmessagealt.QuotedMessageAlt
-import com.example.chatapp_by_command.ui.theme.ReceivedQuoteColor
-import com.google.accompanist.insets.imePadding
 
 var recipientRegisteredName = "+44 515 1245 768"
 var isRecipientRegistered = true
@@ -54,7 +53,7 @@ fun ReceivedMessageRowAlt(
             modifier = Modifier
                 .shadow(1.dp, RoundedCornerShape(8.dp))
                 .clip(RoundedCornerShape(8.dp))
-                .background(Color.White)
+                .background(MaterialTheme.colors.secondaryVariant)
                 .clickable { },
             content = {
                 RecipientName(
@@ -70,7 +69,7 @@ fun ReceivedMessageRowAlt(
                             .padding(top = 4.dp, start = 4.dp, end = 4.dp)
                             // 🔥 This is required to set Surface height before text is set
                             .height(IntrinsicSize.Min)
-                            .background(ReceivedQuoteColor, shape = RoundedCornerShape(8.dp))
+                            .background(Color(0xffECEFF1), shape = RoundedCornerShape(8.dp))
                             .clip(shape = RoundedCornerShape(8.dp))
                             .clickable {
 

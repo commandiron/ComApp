@@ -1,15 +1,11 @@
 package com.example.chatapp_by_command.presentation.userlist
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MarkEmailUnread
 import androidx.compose.material.icons.filled.Person
@@ -32,6 +28,7 @@ fun AcceptedFriendRequestList(
     item: FriendListUiRow,
     onClick:() -> Unit = {}){
     Card(
+        contentColor = MaterialTheme.colors.onBackground,
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .fillMaxSize()
@@ -47,7 +44,7 @@ fun AcceptedFriendRequestList(
                 Surface(
                     modifier = Modifier.padding(6.dp),
                     shape = CircleShape,
-                    color = Color.LightGray
+                    color = MaterialTheme.colors.onPrimary
                 ) {
                     if (item.userPictureUrl != "") {
                         Image(
@@ -61,7 +58,6 @@ fun AcceptedFriendRequestList(
                             imageVector = Icons.Filled.Person,
                             contentDescription = null,
                             modifier = Modifier
-                                .background(Color.Black)
                                 .padding(4.dp)
                                 .aspectRatio(1f)
                         )

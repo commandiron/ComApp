@@ -17,6 +17,6 @@ fun ProfileCustomText(
     Text(
         modifier = modifier,
         fontSize = 10.sp,
-        color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
+        color = MaterialTheme.colors.onBackground.copy(alpha = 0.6f),
         text = text)
 }

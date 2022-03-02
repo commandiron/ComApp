@@ -28,7 +28,6 @@ import com.example.chatapp_by_command.presentation.common_components.ProfileCust
 import com.example.chatapp_by_command.presentation.profile.ClickableToGalleryProfilePictureImage
 import com.example.chatapp_by_command.presentation.profile.ProfileAppBar
 import com.example.chatapp_by_command.presentation.profile.ProfileViewModel
-import com.example.chatapp_by_command.ui.theme.backgroundColor
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @ExperimentalComposeUiApi
@@ -92,18 +91,18 @@ fun ProfileScreen(
         }
 
         Surface(
-            color = backgroundColor,
+            color = MaterialTheme.colors.background,
             modifier = Modifier
                 .fillMaxSize()
                 .focusable(true)
                 .pointerInput(Unit) {
                     detectTapGestures(onTap = { keyboardController.hide() })
                 }
-                .padding(8.dp)) {
+                .padding(20.dp)) {
 
             if(isLoading){
                 Box(modifier = Modifier.size(20.dp),contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = Color.White)
+                    CircularProgressIndicator(color = MaterialTheme.colors.onSurface)
                 }
             }else{
                 LazyColumn(horizontalAlignment = Alignment.CenterHorizontally){
@@ -111,7 +110,7 @@ fun ProfileScreen(
 
                         Spacer(modifier = Modifier.height(10.dp))
 
-                        Text("Mail: " + email)
+                        Text(text = "Mail: " + email)
 
                         ClickableToGalleryProfilePictureImage(userDataPictureUrl){
                             if(it != null){

@@ -2,14 +2,13 @@ package com.example.chatapp_by_command.presentation
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
@@ -24,7 +23,7 @@ fun LoginCustomOutlinedTextField(entry: String, hint: String, icon: ImageVector,
     OutlinedTextField(
         modifier = fullWidthModifier,
         value = text,
-        label = { Text(hint) },
+        label = { Text(text = hint) },
         onValueChange = {
             text = it
             onChange(it)},

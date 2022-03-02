@@ -27,9 +27,7 @@ import com.example.chatapp_by_command.presentation.LoginCustomOutlinedTextField
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
 import com.example.chatapp_by_command.presentation.common_components.LoginPasswordCustomOutlinedTextField
 import com.example.chatapp_by_command.presentation.login.LoginViewModel
-import com.example.chatapp_by_command.ui.theme.backgroundColor
 import com.example.chatapp_by_command.ui.theme.backgroundColorDark
-import com.example.chatapp_by_command.ui.theme.primaryColor
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
@@ -60,26 +58,11 @@ fun SignUpScreen(
         textEmail = emailFromSignIn
     }
 
-    //Check User Authenticated
-    val isUserAuthenticated = loginViewModel.isUserAuthenticatedState.value
-    LaunchedEffect(Unit) {
-        if(isUserAuthenticated) {
-            navController.navigate(BottomNavItem.Profile.fullRoute)
-        }
-    }
-
-    //Sign In Navigate
-    val isUserSignIn = loginViewModel.isUserSignInState.value
-    LaunchedEffect(key1 = isUserSignIn){
-        if (isUserSignIn) {
-            navController.navigate(BottomNavItem.Profile.fullRoute)
-        }
-    }
-
     //Sign Up Navigate
     val isUserSignUp = loginViewModel.isUserSignUpState.value
     LaunchedEffect(key1 = isUserSignUp){
         if (isUserSignUp) {
+            keyboardController.hide()
             navController.navigate(BottomNavItem.Profile.fullRoute)
         }
     }
@@ -87,7 +70,7 @@ fun SignUpScreen(
     //Compose Components
     Column() {
         Surface(
-            color = backgroundColor,
+            color = MaterialTheme.colors.background,
             modifier = Modifier
                 .weight(8f)
                 .fillMaxSize()
@@ -107,15 +90,17 @@ fun SignUpScreen(
                         .size(120.dp),
                     imageVector = Icons.Default.Chat,
                     contentDescription = "Logo Icon",
-                    tint = primaryColor
+                    tint = MaterialTheme.colors.onBackground
                 )
 
                 Text(text ="Sign up for ComApp",
+                    color = MaterialTheme.colors.onBackground,
                     fontFamily = FontFamily.Cursive,
                     fontSize = 36.sp,
                     modifier = Modifier.padding(2.dp, 2.dp, 2.dp, 2.dp))
 
                 Text(text ="A simple chat app.",
+                    color = MaterialTheme.colors.onBackground,
                     fontSize = 12.sp,
                     modifier = Modifier.padding(2.dp, 2.dp, 2.dp, 30.dp))
 
@@ -135,13 +120,13 @@ fun SignUpScreen(
                 },modifier = Modifier.padding(2.dp)) {
                     Text(
                         text = "Sign Up",
-                        color = Color.White)
+                        color = MaterialTheme.colors.onPrimary)
                 }
             }
         }
 
         Surface(
-            color = backgroundColorDark,
+            color = MaterialTheme.colors.primaryVariant,
             modifier = Modifier
                 .weight(1f)
                 .fillMaxSize()
@@ -152,7 +137,7 @@ fun SignUpScreen(
             Row(horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(bottom = 30.dp)) {
-                Text(text = "Already have an account?", fontSize = 14.sp, color = Color.Black)
+                Text(text = "Already have an account?", fontSize = 14.sp, color = MaterialTheme.colors.onBackground)
                 Text(text = " Log in", fontSize = 14.sp, color = Color.Red, modifier = Modifier.clickable {
 
                     if(textEmail == ""){

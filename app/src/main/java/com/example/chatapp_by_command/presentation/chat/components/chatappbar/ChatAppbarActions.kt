@@ -3,10 +3,7 @@ package com.example.chatapp_by_command.presentation.chat.components.chatappbar
 import android.widget.Toast
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Call
 import androidx.compose.material.icons.rounded.MoreVert
@@ -38,7 +35,7 @@ fun ChatAppbarActions(
             Icon(
                 imageVector = Icons.Rounded.Videocam,
                 contentDescription = null,
-                tint = Color.White
+                tint = MaterialTheme.colors.onPrimary
             )
         }
 
@@ -50,7 +47,7 @@ fun ChatAppbarActions(
             Icon(
                 imageVector = Icons.Rounded.Call,
                 contentDescription = null,
-                tint = Color.White
+                tint = MaterialTheme.colors.onPrimary
             )
         }
 
@@ -64,7 +61,7 @@ fun ChatAppbarActions(
             Icon(
                 imageVector = Icons.Rounded.MoreVert,
                 contentDescription = null,
-                tint = Color.White
+                tint = MaterialTheme.colors.onPrimary
             )
             DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
                 DropdownMenuItem(onClick = {

@@ -5,9 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.LocalTextStyle
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
@@ -63,9 +61,8 @@ fun ProfileCustomTextField(
         },
         singleLine = true,
         maxLines = maxLine,
-        cursorBrush = SolidColor(MaterialTheme.colors.primary),
+        cursorBrush = SolidColor(MaterialTheme.colors.onSurface),
         textStyle = LocalTextStyle.current.copy(
-            color = MaterialTheme.colors.onSurface,
             fontSize = fontSize
         ),
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),

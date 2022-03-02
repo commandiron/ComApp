@@ -4,26 +4,19 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.border
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
-import com.example.chatapp_by_command.ui.theme.selectedContentColor
 import com.example.chatapp_by_command.ui.theme.unselectedContentColor
-import com.google.accompanist.insets.LocalWindowInsets
-import com.google.accompanist.insets.imePadding
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.rememberInsetsPaddingValues
 
 @ExperimentalAnimationApi
 @Composable
@@ -42,6 +35,7 @@ fun BottomNavigationView(navController: NavController, bottomBarState: Boolean) 
         exit = slideOutVertically(targetOffsetY = { it }),
         content = {
             androidx.compose.material.BottomNavigation(
+                backgroundColor = MaterialTheme.colors.primary,
                 modifier = Modifier
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -54,7 +48,7 @@ fun BottomNavigationView(navController: NavController, bottomBarState: Boolean) 
                         alwaysShowLabel = false,
                         selected = currentRoute == item.screen_route,
                         unselectedContentColor = unselectedContentColor,
-                        selectedContentColor = selectedContentColor,
+                        selectedContentColor = MaterialTheme.colors.onPrimary,
                         onClick = {
                             navController.navigate(item.screen_route) {
                                 navController.graph.startDestinationRoute?.let { screen_route ->
@@ -71,5 +65,4 @@ fun BottomNavigationView(navController: NavController, bottomBarState: Boolean) 
             }
         }
     )
-
 }

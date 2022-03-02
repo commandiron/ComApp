@@ -63,6 +63,7 @@ fun UserListScreen(
 
     //Compose Components
     Column(modifier = Modifier
+            .background(MaterialTheme.colors.background)
             .focusable()
             .pointerInput(Unit) {
             detectTapGestures(onTap = { keyboardController.hide() })
@@ -97,8 +98,7 @@ fun UserListScreen(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .weight(1f)
-                    .background(Color(0xffECEFF1)),
+                    .weight(1f),
                 state = scrollState,
                 contentPadding = PaddingValues(top = 8.dp, bottom = 8.dp, start = 8.dp, end = 8 .dp)
             ) {

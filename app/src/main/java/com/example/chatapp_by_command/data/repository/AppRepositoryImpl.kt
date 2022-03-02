@@ -211,6 +211,16 @@ class AppRepositoryImpl  @Inject constructor(
                 val databaseReference = databaseFirebase.getReference("Profiles").child(userUUID).child("profile").child("status")
                 databaseReference.setValue(userStatus.toString()).await()
 
+                //One signalde problem olabilir, alttaki kod çalışmadı anlamadım daha sonra geri döneceğim.
+
+//                if(userStatus.toString() == UserStatus.OFFLINE.toString()){
+//                    OneSignal.disablePush(false)
+//                    println("Push Disabled: " + OneSignal.getDeviceState()?.isPushDisabled)
+//                }else if(userStatus.toString() == UserStatus.ONLINE.toString()){
+//                    OneSignal.disablePush(true)
+//                    println("Push Disabled: " + OneSignal.getDeviceState()?.isPushDisabled)
+//                }
+
                 emit(Success(true))
             }else{
                 emit(Success(false))

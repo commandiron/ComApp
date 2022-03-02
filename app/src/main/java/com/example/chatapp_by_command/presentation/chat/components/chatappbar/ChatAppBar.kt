@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.example.chatapp_by_command.presentation.chat.components.chatappbar.ChatAppbarActions
-import com.example.chatapp_by_command.ui.theme.primaryColor
 
 @Composable
 fun ChatAppBar(
@@ -40,8 +39,8 @@ fun ChatAppBar(
 ) {
     TopAppBar(
         elevation = 4.dp,
-        backgroundColor = primaryColor,
-        contentColor = Color.White
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.onPrimary
     )
     {
 
@@ -103,7 +102,7 @@ fun ChatAppBar(
                 Text(
                     text = title,
                     fontSize = 16.sp,
-                    color = Color.White,
+                    color = MaterialTheme.colors.onPrimary,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -111,6 +110,7 @@ fun ChatAppBar(
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                     Text(
                         description,
+                        color = MaterialTheme.colors.onPrimary,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )

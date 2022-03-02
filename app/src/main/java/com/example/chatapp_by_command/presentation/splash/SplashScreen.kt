@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Chat
 import androidx.compose.material.icons.filled.Email
@@ -25,10 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
-import com.example.chatapp_by_command.ui.theme.backgroundColor
-import com.example.chatapp_by_command.ui.theme.logoColor
-import com.example.chatapp_by_command.ui.theme.logoColorLight
-import com.example.chatapp_by_command.ui.theme.primaryColor
+import com.example.chatapp_by_command.ui.theme.*
 import com.google.accompanist.systemuicontroller.SystemUiController
 import kotlinx.coroutines.delay
 
@@ -51,9 +49,6 @@ fun SplashScreen(navController: NavHostController, systemUiController: SystemUiC
 
         navController.popBackStack()
         navController.navigate(BottomNavItem.SignIn.fullRoute)
-
-        systemUiController.setNavigationBarColor(primaryColor)
-        systemUiController.setStatusBarColor(color = backgroundColor)
     }
     Splash(alpha = alphaAnim.value)
 }
@@ -73,10 +68,10 @@ fun Splash(alpha: Float) {
                     .alpha(alpha = alpha),
                 imageVector = Icons.Default.Chat,
                 contentDescription = "Logo Icon",
-                tint = logoColorLight
+                tint = MaterialTheme.colors.onPrimary
             )
             Text(text ="ComApp",
-                color = logoColorLight,
+                color = MaterialTheme.colors.onPrimary,
                 fontFamily = FontFamily.Cursive,
                 fontSize = 36.sp,
                 modifier = Modifier

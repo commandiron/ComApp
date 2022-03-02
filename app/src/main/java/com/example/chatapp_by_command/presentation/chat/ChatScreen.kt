@@ -10,9 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.SnackbarHostState
-import androidx.compose.material.rememberSwipeableState
-import androidx.compose.material.swipeable
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -36,13 +34,8 @@ import com.example.chatapp_by_command.core.SnackbarController
 import com.example.chatapp_by_command.domain.model.MessageRegister
 import com.example.chatapp_by_command.domain.model.MyUser
 import com.example.chatapp_by_command.presentation.chat.ProfilePictureDialog
-import com.example.chatapp_by_command.ui.theme.backgroundColor
-import com.example.chatapp_by_command.ui.theme.primaryColor
 import com.google.accompanist.insets.*
 import kotlinx.coroutines.delay
-import androidx.compose.material.FractionalThreshold
-
-
 
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -165,7 +158,7 @@ private fun ChatScreenContent(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth()
-                .background(backgroundColor),
+                .background(MaterialTheme.colors.background),
             state = scrollState
         ) {
             items(messages) { message: MessageRegister ->
@@ -199,7 +192,7 @@ private fun ChatScreenContent(
         ChatInput(
             onMessageChange = { messageContent ->
                 chatViewModel.insertMessageToFirebase(chatRoomUUID,messageContent,registerUUID, oneSignalUserId)},
-            modifier = Modifier.background(primaryColor), onFocusEvent = {
+            modifier = Modifier.background(MaterialTheme.colors.primary), onFocusEvent = {
                 isChatInputFocus = it
             }
         )

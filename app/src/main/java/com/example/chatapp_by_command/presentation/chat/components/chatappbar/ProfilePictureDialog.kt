@@ -27,7 +27,7 @@ fun ProfilePictureDialog(profilePictureUrl: String, onDismiss: () -> Unit) {
             Column(
                 modifier = Modifier
                     .wrapContentHeight()
-                    .background(Color.White)
+                    .background(MaterialTheme.colors.onPrimary)
                     .padding(8.dp)
             ) {
 

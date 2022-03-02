@@ -4,19 +4,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.chatapp_by_command.domain.model.enumclasses.MessageStatus
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.MessageTimeText
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.SubcomposeColumn
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.chatflexboxlayout.ChatFlexBoxLayout
 import com.example.chatapp_by_command.presentation.chat.components.chatrow.quotedmessagealt.QuotedMessageAlt
-import com.example.chatapp_by_command.ui.theme.SentMessageColor
-import com.example.chatapp_by_command.ui.theme.SentQuoteColor
 
 /**
  * This sent message row uses overloaded [SubcomposeColumn] function only with **content** arg
@@ -45,7 +45,7 @@ fun SentMessageRowAlt(
             modifier = Modifier
                 .shadow(1.dp, RoundedCornerShape(8.dp))
                 .clip(RoundedCornerShape(8.dp))
-                .background(SentMessageColor)
+                .background(MaterialTheme.colors.secondary)
                 .clickable { },
 
             content = {
@@ -56,7 +56,7 @@ fun SentMessageRowAlt(
                             .padding(top = 4.dp, start = 4.dp, end = 4.dp)
                             // 🔥 This is required to set Surface height before text is set
                             .height(IntrinsicSize.Min)
-                            .background(SentQuoteColor, shape = RoundedCornerShape(8.dp))
+                            .background(Color(0xffDEF6D3), shape = RoundedCornerShape(8.dp))
                             .clip(shape = RoundedCornerShape(8.dp))
                             .clickable {
 

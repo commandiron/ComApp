@@ -67,7 +67,7 @@ internal fun ChatInput(
             }
         ) {
             Icon(
-                tint = Color.White,
+                tint = MaterialTheme.colors.onPrimary,
                 imageVector = if (textEmpty) Icons.Filled.Mic else Icons.Filled.Send,
                 contentDescription = null
             )
