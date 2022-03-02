@@ -134,11 +134,7 @@ class AppRepositoryImpl  @Inject constructor(
     }
 
     override suspend fun createOrUpdateProfileToFirebase(
-        profilePictureUrl: String,
-        name: String,
-        surName: String,
-        bio: String,
-        phoneNumber: String
+        myUser: MyUser
     ): Flow<Response<Boolean>> = flow {
         try {
             emit(Loading)
@@ -152,11 +148,11 @@ class AppRepositoryImpl  @Inject constructor(
 
             childUpdates.put("/profileUUID/", userUUID)
             childUpdates.put("/userEmail/", userEmail)
-            if(name!= "") childUpdates.put("/userName/",name)
-            if(profilePictureUrl!= "") childUpdates.put("/userProfilePictureUrl/",profilePictureUrl)
-            if(surName!="") childUpdates.put("/userSurName/",surName)
-            if(bio!="") childUpdates.put("/userBio/",bio)
-            if(phoneNumber!="") childUpdates.put("/userPhoneNumber/",phoneNumber)
+            if(myUser.userName!= "") childUpdates.put("/userName/",myUser.userName)
+            if(myUser.userProfilePictureUrl!= "") childUpdates.put("/userProfilePictureUrl/",myUser.userProfilePictureUrl)
+            if(myUser.userSurName!="") childUpdates.put("/userSurName/",myUser.userSurName)
+            if(myUser.userBio!="") childUpdates.put("/userBio/",myUser.userBio)
+            if(myUser.userPhoneNumber!="") childUpdates.put("/userPhoneNumber/",myUser.userPhoneNumber)
             childUpdates.put("/status/", UserStatus.ONLINE.toString())
 
             databaseReference.updateChildren(childUpdates).await()

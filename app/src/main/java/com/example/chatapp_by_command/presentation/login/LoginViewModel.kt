@@ -3,6 +3,7 @@ package com.example.chatapp_by_command.presentation.login
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.chatapp_by_command.domain.model.MyUser
 import com.example.chatapp_by_command.domain.model.Response
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -65,7 +66,7 @@ class LoginViewModel @Inject constructor(
                     is Response.Success -> {
                         isUserSignUpState.value = response.data
                         toastMessage.value = "Sign Up Successful"
-                        createProfileToFirebase()
+                        firstTimeCreateProfileToFirebase()
                     }
                     is Response.Error -> {
                         toastMessage.value = "Sign Up Failed"
@@ -107,10 +108,9 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun createProfileToFirebase(
-        profilePictureUrl: String = "", name: String = "", surName: String = "", bio: String = "", phoneNumber: String = "") {
+    private fun firstTimeCreateProfileToFirebase() {
         viewModelScope.launch {
-            useCases.createOrUpdateProfileToFirebase(profilePictureUrl, name, surName, bio, phoneNumber).collect { response ->
+            useCases.createOrUpdateProfileToFirebase(MyUser()).collect { response ->
                 when(response){
                     is Response.Loading -> {
                         toastMessage.value = ""

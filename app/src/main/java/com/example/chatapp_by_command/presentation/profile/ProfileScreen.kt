@@ -3,6 +3,7 @@ package com.example.chatapp_by_command.view
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -10,6 +11,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -97,73 +99,83 @@ fun ProfileScreen(
                 .pointerInput(Unit) {
                     detectTapGestures(onTap = { keyboardController.hide() })
                 }
-                .padding(20.dp)) {
+                .padding(8.dp)) {
 
             if(isLoading){
                 Box(modifier = Modifier.size(20.dp),contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = Color.White)
                 }
             }else{
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("Mail: " + email)
+                LazyColumn(horizontalAlignment = Alignment.CenterHorizontally){
+                    item {
 
-                    ClickableToGalleryProfilePictureImage(userDataPictureUrl){
-                        if(it != null){
-                            profileViewModel.uploadPictureToFirebase(it,name,surName,bio,phoneNumber)
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        Text("Mail: " + email)
+
+                        ClickableToGalleryProfilePictureImage(userDataPictureUrl){
+                            if(it != null){
+                                profileViewModel.uploadPictureToFirebase(it)
+                            }
                         }
-                    }
 
-                    ProfileCustomTextField(name,"Name",{name = it},{
-                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName,bio,phoneNumber)
-                    })
+                        ProfileCustomTextField(name,"Name",{name = it},{
+                            profileViewModel.updateProfileToFirebase(MyUser(userName = name))
+                        })
 
-                    Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(4.dp))
 
-                    ProfileCustomTextField(surName,"Surname",{surName = it},{
-                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName,bio,phoneNumber)
-                    })
+                        ProfileCustomTextField(surName,"Surname",{surName = it},{
+                            profileViewModel.updateProfileToFirebase(MyUser(userSurName = surName))
+                        })
 
-                    Spacer(modifier = Modifier.height(6.dp))
+                        Spacer(modifier = Modifier.height(6.dp))
 
-                    ProfileCustomText(
-                        text ="Enter your name and last name.",
-                        modifier = Modifier
-                            .padding(10.dp, 0.dp, 0.dp, 0.dp)
-                            .align(Alignment.Start))
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                        ProfileCustomText(
+                            text ="Enter your name and last name.",
+                            modifier = Modifier
+                                .padding(10.dp, 0.dp, 0.dp, 0.dp)
+                                .fillMaxSize()
+                                .align(Alignment.Start))
 
-                    ProfileCustomTextField(bio,"Bio",{bio = it},{
-                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName,bio,phoneNumber)
-                    })
+                        Spacer(modifier = Modifier.height(24.dp))
 
-                    Spacer(modifier = Modifier.height(6.dp))
+                        ProfileCustomTextField(bio,"Bio",{bio = it},{
+                            profileViewModel.updateProfileToFirebase(MyUser(userBio = bio))
+                        })
 
-                    ProfileCustomText(
-                        text ="Any details about you.",
-                        modifier = Modifier
-                            .padding(10.dp, 0.dp, 0.dp, 0.dp)
-                            .align(Alignment.Start))
+                        Spacer(modifier = Modifier.height(6.dp))
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                        ProfileCustomText(
+                            text ="Any details about you.",
+                            modifier = Modifier
+                                .padding(10.dp, 0.dp, 0.dp, 0.dp)
+                                .fillMaxSize()
+                                .align(Alignment.Start))
 
-                    ProfileCustomTextField(phoneNumber,"Phone Number",{phoneNumber = it},{
-                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName,bio,phoneNumber)
-                    }, keyboardType = KeyboardType.Phone)
+                        Spacer(modifier = Modifier.height(24.dp))
 
-                    Spacer(modifier = Modifier.height(6.dp))
+                        ProfileCustomTextField(phoneNumber,"Phone Number",{phoneNumber = it},{
+                            profileViewModel.updateProfileToFirebase(MyUser(userPhoneNumber = phoneNumber))
+                        }, keyboardType = KeyboardType.Phone)
 
-                    ProfileCustomText(
-                        text ="Enter your phone number.",
-                        modifier = Modifier
-                        .padding(10.dp, 0.dp, 0.dp, 0.dp)
-                        .align(Alignment.Start))
+                        Spacer(modifier = Modifier.height(6.dp))
 
-                    Spacer(modifier = Modifier.height(120.dp))
+                        ProfileCustomText(
+                            text ="Enter your phone number.",
+                            modifier = Modifier
+                                .padding(10.dp, 0.dp, 0.dp, 0.dp)
+                                .fillMaxSize()
+                                .align(Alignment.Start))
 
-                    LogOutCustomText{
-                        profileViewModel.setUserStatusToFirebaseAndSignOut(UserStatus.OFFLINE)
+                        Spacer(modifier = Modifier.height(140.dp))
+
+                        LogOutCustomText{
+                            profileViewModel.setUserStatusToFirebaseAndSignOut(UserStatus.OFFLINE)
+                        }
+
+                        Spacer(modifier = Modifier.height(360.dp))
                     }
                 }
             }

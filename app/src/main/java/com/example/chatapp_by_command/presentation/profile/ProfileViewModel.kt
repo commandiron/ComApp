@@ -60,7 +60,7 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun uploadPictureToFirebase(uri: Uri, name: String, surName: String, bio: String, phoneNumber: String) {
+    fun uploadPictureToFirebase(uri: Uri) {
         viewModelScope.launch {
             useCases.uploadPictureToFirebase(uri).collect { response ->
                 when(response){
@@ -70,7 +70,8 @@ class ProfileViewModel @Inject constructor(
                     is Response.Success -> {
                         //Picture Uploaded
                         isLoading.value = false
-                        updateProfileToFirebase(response.data, name, surName, bio, phoneNumber)
+                        updateProfileToFirebase(
+                            MyUser(userProfilePictureUrl = response.data))
                     }
                     is Response.Error -> {}
                 }
@@ -79,9 +80,9 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun updateProfileToFirebase(profilePictureUrl: String = "", name: String = "", surName: String = "", bio: String = "", phoneNumber: String = "") {
+    fun updateProfileToFirebase(myUser: MyUser) {
         viewModelScope.launch {
-            useCases.createOrUpdateProfileToFirebase(profilePictureUrl, name, surName, bio, phoneNumber).collect { response ->
+            useCases.createOrUpdateProfileToFirebase(myUser).collect { response ->
                 when(response){
                     is Response.Loading -> {
                         toastMessage.value = ""
