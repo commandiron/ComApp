@@ -36,6 +36,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
  
  * Todo ✔️
+   * Firebase request code optimization & cleaning ❌
    * Dark theme ❌
    * Push notification ❌
    * Login via Google ❌
