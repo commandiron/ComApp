@@ -107,9 +107,10 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun createProfileToFirebase(profilePictureUrl: String = "", name: String = "", surName: String = "") {
+    private fun createProfileToFirebase(
+        profilePictureUrl: String = "", name: String = "", surName: String = "", bio: String = "", phoneNumber: String = "") {
         viewModelScope.launch {
-            useCases.createOrUpdateProfileToFirebase(profilePictureUrl, name, surName).collect { response ->
+            useCases.createOrUpdateProfileToFirebase(profilePictureUrl, name, surName, bio, phoneNumber).collect { response ->
                 when(response){
                     is Response.Loading -> {
                         toastMessage.value = ""

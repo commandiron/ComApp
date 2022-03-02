@@ -14,8 +14,8 @@ interface AppRepository {
 
     //Profile Screen
     suspend fun signOut(): Flow<Response<Boolean>>
-    suspend fun uploadPictureToFirebase(uri: Uri, name: String, surName: String): Flow<Response<String>>
-    suspend fun createOrUpdateProfileToFirebase(profilePictureUrl: String, name: String, surName: String): Flow<Response<Boolean>>
+    suspend fun uploadPictureToFirebase(uri: Uri): Flow<Response<String>>
+    suspend fun createOrUpdateProfileToFirebase(profilePictureUrl: String, name: String, surName: String, bio: String, phoneNumber: String): Flow<Response<Boolean>>
     suspend fun loadProfileFromFirebase(): Flow<Response<MyUser>>
 
     suspend fun setUserStatusToFirebase(userStatus: UserStatus): Flow<Response<Boolean>>

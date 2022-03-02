@@ -66,10 +66,10 @@ fun ProfileScreen(
     surName = userDataFromFirebase.userSurName
 
     var bio by remember { mutableStateOf("")}
-    //bio = userDataFromFirebase.userBio
+    bio = userDataFromFirebase.userBio
 
     var phoneNumber by remember { mutableStateOf("")}
-    //bio = userDataFromFirebase.userPhoneNumber
+    phoneNumber = userDataFromFirebase.userPhoneNumber
 
     var userDataPictureUrl by remember {mutableStateOf("")}
     userDataPictureUrl = userDataFromFirebase.userProfilePictureUrl
@@ -110,18 +110,18 @@ fun ProfileScreen(
 
                     ClickableToGalleryProfilePictureImage(userDataPictureUrl){
                         if(it != null){
-                            profileViewModel.uploadPictureToFirebase(it, name, surName)
+                            profileViewModel.uploadPictureToFirebase(it,name,surName,bio,phoneNumber)
                         }
                     }
 
                     ProfileCustomTextField(name,"Name",{name = it},{
-                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName)
+                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName,bio,phoneNumber)
                     })
 
                     Spacer(modifier = Modifier.height(4.dp))
 
                     ProfileCustomTextField(surName,"Surname",{surName = it},{
-                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName)
+                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName,bio,phoneNumber)
                     })
 
                     Spacer(modifier = Modifier.height(6.dp))
@@ -135,7 +135,7 @@ fun ProfileScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     ProfileCustomTextField(bio,"Bio",{bio = it},{
-                        //profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName)
+                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName,bio,phoneNumber)
                     })
 
                     Spacer(modifier = Modifier.height(6.dp))
@@ -149,7 +149,7 @@ fun ProfileScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     ProfileCustomTextField(phoneNumber,"Phone Number",{phoneNumber = it},{
-                        //profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName)
+                        profileViewModel.updateProfileToFirebase(userDataPictureUrl,name,surName,bio,phoneNumber)
                     }, keyboardType = KeyboardType.Phone)
 
                     Spacer(modifier = Modifier.height(6.dp))

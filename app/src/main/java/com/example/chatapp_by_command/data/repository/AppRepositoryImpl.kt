@@ -113,7 +113,7 @@ class AppRepositoryImpl  @Inject constructor(
         }
     }
 
-    override suspend fun uploadPictureToFirebase(uri: Uri, name: String, surName: String): Flow<Response<String>> = flow {
+    override suspend fun uploadPictureToFirebase(uri: Uri): Flow<Response<String>> = flow {
         try {
             emit(Loading)
             val uuidImage = UUID.randomUUID()
@@ -136,7 +136,9 @@ class AppRepositoryImpl  @Inject constructor(
     override suspend fun createOrUpdateProfileToFirebase(
         profilePictureUrl: String,
         name: String,
-        surName: String
+        surName: String,
+        bio: String,
+        phoneNumber: String
     ): Flow<Response<Boolean>> = flow {
         try {
             emit(Loading)
@@ -153,6 +155,8 @@ class AppRepositoryImpl  @Inject constructor(
             if(name!= "") childUpdates.put("/userName/",name)
             if(profilePictureUrl!= "") childUpdates.put("/userProfilePictureUrl/",profilePictureUrl)
             if(surName!="") childUpdates.put("/userSurName/",surName)
+            if(bio!="") childUpdates.put("/userBio/",bio)
+            if(phoneNumber!="") childUpdates.put("/userPhoneNumber/",phoneNumber)
             childUpdates.put("/status/", UserStatus.ONLINE.toString())
 
             databaseReference.updateChildren(childUpdates).await()

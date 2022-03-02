@@ -6,5 +6,6 @@ import com.example.chatapp_by_command.domain.repository.AppRepository
 class UploadPictureToFirebase(
     private val repository: AppRepository
 ) {
-    suspend operator fun invoke(uri: Uri, name: String, surName: String) = repository.uploadPictureToFirebase(uri, name, surName)
+    suspend operator fun invoke(uri: Uri)
+    = repository.uploadPictureToFirebase(uri)
 }
