@@ -187,6 +187,8 @@ fun NavigationGraph(
                     type = NavType.StringType
                 },navArgument("registerUUID"){
                     type = NavType.StringType
+                },navArgument("oneSignalUserId"){
+                    type = NavType.StringType
                 }),
             enterTransition = {
                 when(initialState.destination.route){
@@ -211,11 +213,15 @@ fun NavigationGraph(
             val registerUUID = remember{
                 it.arguments?.getString("registerUUID")
             }
+            val oneSignalUserId = remember{
+                it.arguments?.getString("oneSignalUserId")
+            }
 
             ChatScreen(
                 chatRoomUUID = chatroomUUID?: "",
                 opponentUUID = opponentUUID?: "",
                 registerUUID= registerUUID?: "",
+                oneSignalUserId = oneSignalUserId?: "",
                 navController = navController,
                 snackbarHostState = snackbarHostState,
                 keyboardController = keyboardController)

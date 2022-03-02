@@ -39,9 +39,9 @@ class ChatViewModel@Inject constructor(
 
     //PUBLIC FUNCTIONS
 
-    fun insertMessageToFirebase(chatRoomUUID: String, messageContent: String, registerUUID: String){
+    fun insertMessageToFirebase(chatRoomUUID: String, messageContent: String, registerUUID: String, oneSignalUserId : String){
         viewModelScope.launch {
-            useCases.insertMessageToFirebase(chatRoomUUID, messageContent, registerUUID).collect { response ->
+            useCases.insertMessageToFirebase(chatRoomUUID, messageContent, registerUUID, oneSignalUserId).collect { response ->
                 when(response){
                     is Response.Loading -> {
                         messageInserted.value = false

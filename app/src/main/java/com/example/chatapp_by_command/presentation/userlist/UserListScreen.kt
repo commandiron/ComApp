@@ -45,11 +45,12 @@ fun UserListScreen(
     //Chat Screen Navigate
     var chatRoomUUID : String? by remember {mutableStateOf(null)}
     var opponentUUID : String? by remember {mutableStateOf(null)}
+    var oneSignalUserId : String? by remember {mutableStateOf(null)}
     var registerUUID : String? by remember { mutableStateOf(null)}
-    if(chatRoomUUID != null && opponentUUID != null && registerUUID != null){
+    if(chatRoomUUID != null && opponentUUID != null && registerUUID != null && oneSignalUserId != null){
         LaunchedEffect(key1 = Unit){
             navController.popBackStack()
-            navController.navigate(BottomNavItem.Chat.screen_route + "/${chatRoomUUID}" + "/${opponentUUID}" + "/${registerUUID}")
+            navController.navigate(BottomNavItem.Chat.screen_route + "/${chatRoomUUID}" + "/${opponentUUID}" + "/${registerUUID}"+ "/${oneSignalUserId}")
         }
     }
 
@@ -107,6 +108,7 @@ fun UserListScreen(
                         chatRoomUUID = item.chatRoomUUID
                         registerUUID = item.registerUUID
                         opponentUUID = item.userUUID
+                        oneSignalUserId = item.oneSignalUserId
                     }
 
                 }

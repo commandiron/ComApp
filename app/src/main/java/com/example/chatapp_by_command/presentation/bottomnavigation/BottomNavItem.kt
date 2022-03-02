@@ -19,7 +19,7 @@ sealed class BottomNavItem(var title:String, var icon:Int, var screen_route:Stri
     object UserList: BottomNavItem("Chat",R.drawable.ic_baseline_chat_24,"userlist", ""){
         val fullRoute = screen_route + arguments
     }
-    object Chat: BottomNavItem("Chat",R.drawable.ic_baseline_chat_24,"chat","/{chatroomUUID}" + "/{opponentUUID}" + "/{registerUUID}"){
+    object Chat: BottomNavItem("Chat",R.drawable.ic_baseline_chat_24,"chat","/{chatroomUUID}" + "/{opponentUUID}" + "/{registerUUID}" + "/{oneSignalUserId}"){
         val fullRoute = screen_route + arguments
     }
 

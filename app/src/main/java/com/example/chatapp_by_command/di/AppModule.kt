@@ -2,15 +2,19 @@ package com.example.chatapp_by_command.di
 
 import android.app.Application
 import android.content.Context
+import com.example.chatapp_by_command.core.Constants.ONESIGNAL_APP_ID
 import com.example.chatapp_by_command.data.repository.AppRepositoryImpl
 import com.example.chatapp_by_command.domain.repository.AppRepository
 import com.example.chatapp_by_command.domain.use_case.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.onesignal.OSDeviceState
+import com.onesignal.OneSignal
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 
 @Module
@@ -29,6 +33,18 @@ object AppModule {
     @Provides
     fun provideSharedPreferences(application: Application) = application.getSharedPreferences("login", Context.MODE_PRIVATE)
 
+    @Provides
+    fun provideOneSignal(@ApplicationContext context: Context): OneSignal {
+        // Logging set to help debug issues, remove before releasing your app.
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(context)
+        OneSignal.setAppId(ONESIGNAL_APP_ID)
+
+        return OneSignal()
+    }
+
 //    @Singleton
 //    @Provides
 //    fun provideUserDatabase(@ApplicationContext context: Context) =
@@ -43,9 +59,10 @@ object AppModule {
     fun provideAuthRepository(
         auth: FirebaseAuth,
         storage: FirebaseStorage,
-        databaseFirebase: FirebaseDatabase
+        databaseFirebase: FirebaseDatabase,
+        oneSignal: OneSignal
         //appDAO: AppDAO
-    ): AppRepository = AppRepositoryImpl(auth, storage, databaseFirebase)
+    ): AppRepository = AppRepositoryImpl(auth, storage, databaseFirebase, oneSignal)
 
     @Provides
     fun provideUseCases(repository: AppRepository) = UseCases(

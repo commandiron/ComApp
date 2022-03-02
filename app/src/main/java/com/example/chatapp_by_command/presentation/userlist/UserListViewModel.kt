@@ -57,7 +57,7 @@ class UserListViewModel @Inject constructor(
                     }
                     is Response.Success -> {
                         if(response.data != null){
-                            checkChatRoomIsExistFromFirebaseAndCreateIfNot(acceptorEmail, response.data.profileUUID)
+                            checkChatRoomIsExistFromFirebaseAndCreateIfNot(acceptorEmail, response.data.profileUUID, response.data.oneSignalUserId)
                         }else{
                             toastMessage.value = "User Not Found"
                         }
@@ -135,7 +135,7 @@ class UserListViewModel @Inject constructor(
         }
     }
 
-    private fun checkChatRoomIsExistFromFirebaseAndCreateIfNot(acceptorEmail: String, acceptorUUID: String){
+    private fun checkChatRoomIsExistFromFirebaseAndCreateIfNot(acceptorEmail: String, acceptorUUID: String, acceptorOneSignalUserId: String){
         viewModelScope.launch {
             useCases.checkChatRoomIsExistFromFirebase.invoke(acceptorUUID).collect { response ->
                 when(response){
@@ -143,11 +143,11 @@ class UserListViewModel @Inject constructor(
                     is Response.Success -> {
                         if(response.data.equals(Constants.NO_CHATROOM_IN_FIREBASE_DATABASE)){
                             //Create ChatRoom
-                            createChatRoomToFirebase(acceptorEmail, acceptorUUID)
+                            createChatRoomToFirebase(acceptorEmail, acceptorUUID, acceptorOneSignalUserId)
 
                         }else{
                             //Chat Room Exist
-                            checkFriendListRegisterIsExistFromFirebase(response.data,acceptorEmail,acceptorUUID)
+                            checkFriendListRegisterIsExistFromFirebase(response.data,acceptorEmail,acceptorUUID, acceptorOneSignalUserId)
                         }
                     }
                     is Response.Error -> {}
@@ -156,14 +156,14 @@ class UserListViewModel @Inject constructor(
         }
     }
 
-    private fun createChatRoomToFirebase(acceptorEmail: String,acceptorUUID: String){
+    private fun createChatRoomToFirebase(acceptorEmail: String,acceptorUUID: String, acceptorOneSignalUserId: String){
         viewModelScope.launch {
             useCases.createChatRoomToFirebase.invoke(acceptorUUID).collect { response ->
                 when(response){
                     is Response.Loading -> {}
                     is Response.Success -> {
                         //Chat Room Created.
-                        checkFriendListRegisterIsExistFromFirebase(response.data,acceptorEmail,acceptorUUID)
+                        checkFriendListRegisterIsExistFromFirebase(response.data,acceptorEmail,acceptorUUID, acceptorOneSignalUserId)
                     }
                     is Response.Error -> {}
                 }
@@ -171,7 +171,7 @@ class UserListViewModel @Inject constructor(
         }
     }
 
-    private fun checkFriendListRegisterIsExistFromFirebase(chatRoomUUID: String, acceptorEmail: String, acceptorUUID: String){
+    private fun checkFriendListRegisterIsExistFromFirebase(chatRoomUUID: String, acceptorEmail: String, acceptorUUID: String, acceptorOneSignalUserId: String){
         viewModelScope.launch {
             useCases.checkFriendListRegisterIsExistFromFirebase.invoke(acceptorEmail, acceptorUUID).collect { response ->
                 when(response){
@@ -181,7 +181,7 @@ class UserListViewModel @Inject constructor(
                     is Response.Success -> {
                         if(response.data.equals(FriendListRegister())){
                             toastMessage.value = "Friend Request Sent."
-                            createFriendListRegisterToFirebase(chatRoomUUID, acceptorEmail,acceptorUUID)
+                            createFriendListRegisterToFirebase(chatRoomUUID, acceptorEmail,acceptorUUID, acceptorOneSignalUserId)
                         }else if (response.data.status.equals(FriendStatus.PENDING.toString())){
                             toastMessage.value = "Already Have Friend Request"
                         }else if (response.data.status.equals(FriendStatus.ACCEPTED.toString())){
@@ -196,9 +196,9 @@ class UserListViewModel @Inject constructor(
         }
     }
 
-    private fun createFriendListRegisterToFirebase(chatRoomUUID: String, acceptorEmail: String, acceptorUUID: String){
+    private fun createFriendListRegisterToFirebase(chatRoomUUID: String, acceptorEmail: String, acceptorUUID: String, acceptorOneSignalUserId: String){
         viewModelScope.launch {
-            useCases.createFriendListRegisterToFirebase.invoke(chatRoomUUID, acceptorEmail, acceptorUUID).collect { response ->
+            useCases.createFriendListRegisterToFirebase.invoke(chatRoomUUID, acceptorEmail, acceptorUUID, acceptorOneSignalUserId).collect { response ->
                 when(response){
                     is Response.Loading -> {}
                     is Response.Success -> {

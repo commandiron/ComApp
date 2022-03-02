@@ -15,6 +15,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
+import com.onesignal.OneSignal
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -22,6 +23,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import org.json.JSONObject
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -33,7 +35,8 @@ import kotlin.collections.HashMap
 class AppRepositoryImpl  @Inject constructor(
     private val auth: FirebaseAuth,
     private val storage: FirebaseStorage,
-    private val databaseFirebase: FirebaseDatabase
+    private val databaseFirebase: FirebaseDatabase,
+    private val oneSignal: OneSignal
 ): AppRepository {
 
     //Login Screen
@@ -141,6 +144,7 @@ class AppRepositoryImpl  @Inject constructor(
 
             val userUUID = auth.currentUser?.uid.toString()
             val userEmail = auth.currentUser?.email.toString()
+            val oneSignalUserId = OneSignal.getDeviceState()?.userId.toString()
 
             val databaseReference = databaseFirebase.getReference("Profiles").child(userUUID).child("profile")
 
@@ -148,6 +152,7 @@ class AppRepositoryImpl  @Inject constructor(
 
             childUpdates.put("/profileUUID/", userUUID)
             childUpdates.put("/userEmail/", userEmail)
+            childUpdates.put("/oneSignalUserId/", oneSignalUserId)
             if(myUser.userName!= "") childUpdates.put("/userName/",myUser.userName)
             if(myUser.userProfilePictureUrl!= "") childUpdates.put("/userProfilePictureUrl/",myUser.userProfilePictureUrl)
             if(myUser.userSurName!="") childUpdates.put("/userSurName/",myUser.userSurName)
@@ -249,17 +254,20 @@ class AppRepositoryImpl  @Inject constructor(
 
                                 var email: String = ""
                                 var uuid: String = ""
+                                var oneSignalUserId: String = ""
 
                                 if(i.requesterUUID == myUUID){
                                     email = i.acceptorEmail
                                     uuid = i.acceptorUUID
+                                    oneSignalUserId = i.acceptorOneSignalUserId
                                 }else if(i.acceptorUUID == myUUID){
                                     email = i.requesterEmail
                                     uuid = i.requesterUUID
+                                    oneSignalUserId = i.requesterOneSignalUserId
                                 }
 
                                 if(email != "" && uuid != ""){
-                                    val friendListUiRow = FriendListUiRow(chatRoomUUID, email, uuid, registerUUID, pictureUrl, lastMessage)
+                                    val friendListUiRow = FriendListUiRow(chatRoomUUID, email, uuid, oneSignalUserId, registerUUID, pictureUrl, lastMessage)
                                     friendListUiRowList += friendListUiRow
                                 }
                             }
@@ -278,7 +286,7 @@ class AppRepositoryImpl  @Inject constructor(
                                             .child("userProfilePictureUrl")
                                             .get().addOnSuccessListener {
 
-                                                val friendListUiRow = FriendListUiRow(i.chatRoomUUID,i.userEmail,i.userUUID,i.registerUUID,it.value as String,i.lastMessage)
+                                                val friendListUiRow = FriendListUiRow(i.chatRoomUUID,i.userEmail,i.userUUID,i.oneSignalUserId,i.registerUUID,it.value as String,i.lastMessage)
                                                 resultList += friendListUiRow
 
                                             }.addOnFailureListener {
@@ -533,7 +541,8 @@ class AppRepositoryImpl  @Inject constructor(
     override suspend fun createFriendListRegisterToFirebase(
         chatRoomUUID: String,
         acceptorEmail: String,
-        acceptorUUID: String
+        acceptorUUID: String,
+        acceptorOneSignalUserId: String
     ): Flow<Response<Boolean>> = flow {
 
         try {
@@ -543,6 +552,7 @@ class AppRepositoryImpl  @Inject constructor(
 
             val requesterEmail = auth.currentUser?.email
             val requesterUUID = auth.currentUser?.uid
+            val requesterOneSignalUserId = OneSignal.getDeviceState()?.userId
 
             val databaseReference = databaseFirebase.getReference("Friend_List")
 
@@ -552,8 +562,10 @@ class AppRepositoryImpl  @Inject constructor(
                     registerUUID,
                     requesterEmail!!,
                     requesterUUID!!,
+                    requesterOneSignalUserId!!,
                     acceptorEmail,
                     acceptorUUID,
+                    acceptorOneSignalUserId,
                     FriendStatus.PENDING.toString(),
                     ChatMessage()
                 )
@@ -645,12 +657,21 @@ class AppRepositoryImpl  @Inject constructor(
 
     //ChatScreen
 
-    override suspend fun insertMessageToFirebase(chatRoomUUID: String, messageContent: String, registerUUID: String): Flow<Response<Boolean>> = flow {
+    override suspend fun insertMessageToFirebase(chatRoomUUID: String, messageContent: String, registerUUID: String, oneSignalUserId : String): Flow<Response<Boolean>> = flow {
         try {
             emit(Loading)
 
             val myUUID = auth.currentUser?.uid
+            val myEmail = auth.currentUser?.email
             val messageUUID = UUID.randomUUID().toString()
+
+            OneSignal.postNotification(JSONObject("{'contents': {'en':'$myEmail: $messageContent'}, 'include_player_ids': ['" + oneSignalUserId + "']}"), object: OneSignal.PostNotificationResponseHandler{
+                override fun onSuccess(p0: JSONObject?) {
+
+                }
+                override fun onFailure(p0: JSONObject?) {
+                }
+            })
 
             val message = ChatMessage(
                 myUUID!!,

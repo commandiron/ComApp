@@ -31,14 +31,14 @@ interface AppRepository {
     suspend fun createChatRoomToFirebase(acceptorUUID: String): Flow<Response<String>>
 
     suspend fun checkFriendListRegisterIsExistFromFirebase(acceptorEmail: String, acceptorUUID: String): Flow<Response<FriendListRegister>>
-    suspend fun createFriendListRegisterToFirebase(chatRoomUUID: String, acceptorEmail: String, acceptorUUID: String): Flow<Response<Boolean>>
+    suspend fun createFriendListRegisterToFirebase(chatRoomUUID: String, acceptorEmail: String, acceptorUUID: String, acceptorOneSignalUserId: String): Flow<Response<Boolean>>
 
     suspend fun acceptPendingFriendRequestToFirebase(registerUUID: String): Flow<Response<Boolean>>
     suspend fun cancelPendingFriendRequestToFirebase(registerUUID: String): Flow<Response<Boolean>>
     suspend fun openBlockedFriendToFirebase(registerUUID: String): Flow<Response<Boolean>>
 
     //ChatScreen
-    suspend fun insertMessageToFirebase(chatRoomUUID: String, messageContent: String, registerUUID: String): Flow<Response<Boolean>>
+    suspend fun insertMessageToFirebase(chatRoomUUID: String, messageContent: String, registerUUID: String, oneSignalUserId : String): Flow<Response<Boolean>>
     suspend fun loadMessagesFromFirebase(chatRoomUUID: String, opponentUUID: String, registerUUID: String): Flow<Response<List<ChatMessage>>>
     suspend fun loadOpponentProfileFromFirebase(opponentUUID: String): Flow<Response<MyUser>>
     suspend fun blockFriendToFirebase(registerUUID: String): Flow<Response<Boolean>>

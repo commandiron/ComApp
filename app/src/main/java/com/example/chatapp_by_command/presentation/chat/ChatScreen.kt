@@ -51,6 +51,7 @@ fun ChatScreen(
     chatRoomUUID: String,
     opponentUUID: String,
     registerUUID: String,
+    oneSignalUserId : String,
     chatViewModel: ChatViewModel = hiltViewModel(),
     navController: NavHostController,
     snackbarHostState: SnackbarHostState,
@@ -65,10 +66,11 @@ fun ChatScreen(
     }
 
     //Performans sorunu var, özellikle son mesaja scrollstate ile scroll etmeyi çalıştırınca bu sorun çıktı.
+    //Belki iki ayrı compose üst üste çalıştığı için performans sorunu yaratmış olabilir.
 
     chatViewModel.loadMessagesFromFirebase(chatRoomUUID, opponentUUID, registerUUID)
 
-    ChatScreenContent(chatRoomUUID, opponentUUID, registerUUID, chatViewModel, navController, keyboardController)
+    ChatScreenContent(chatRoomUUID, opponentUUID, registerUUID, oneSignalUserId, chatViewModel, navController, keyboardController)
 }
 
 @OptIn(ExperimentalComposeUiApi::class, androidx.compose.material.ExperimentalMaterialApi::class)
@@ -77,6 +79,7 @@ private fun ChatScreenContent(
     chatRoomUUID: String,
     opponentUUID: String,
     registerUUID: String,
+    oneSignalUserId : String,
     chatViewModel: ChatViewModel,
     navController: NavHostController,
     keyboardController: SoftwareKeyboardController) {
@@ -195,7 +198,7 @@ private fun ChatScreenContent(
 
         ChatInput(
             onMessageChange = { messageContent ->
-                chatViewModel.insertMessageToFirebase(chatRoomUUID,messageContent,registerUUID)},
+                chatViewModel.insertMessageToFirebase(chatRoomUUID,messageContent,registerUUID, oneSignalUserId)},
             modifier = Modifier.background(primaryColor), onFocusEvent = {
                 isChatInputFocus = it
             }
