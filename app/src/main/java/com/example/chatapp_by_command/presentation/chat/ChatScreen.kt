@@ -54,7 +54,7 @@ fun ChatScreen(
     val toastMessage = chatViewModel.toastMessage.value
     LaunchedEffect(key1 = toastMessage){
         if(toastMessage != ""){
-            SnackbarController(this).showSnackbar(snackbarHostState,toastMessage, null)
+            SnackbarController(this).showSnackbar(snackbarHostState,toastMessage, "Close")
         }
     }
 

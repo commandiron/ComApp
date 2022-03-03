@@ -33,18 +33,6 @@ object AppModule {
     @Provides
     fun provideSharedPreferences(application: Application) = application.getSharedPreferences("login", Context.MODE_PRIVATE)
 
-    @Provides
-    fun provideOneSignal(@ApplicationContext context: Context): OneSignal {
-        // Logging set to help debug issues, remove before releasing your app.
-        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
-
-        // OneSignal Initialization
-        OneSignal.initWithContext(context)
-        OneSignal.setAppId(ONESIGNAL_APP_ID)
-
-        return OneSignal()
-    }
-
 //    @Singleton
 //    @Provides
 //    fun provideUserDatabase(@ApplicationContext context: Context) =
@@ -59,10 +47,9 @@ object AppModule {
     fun provideAuthRepository(
         auth: FirebaseAuth,
         storage: FirebaseStorage,
-        databaseFirebase: FirebaseDatabase,
-        oneSignal: OneSignal
+        databaseFirebase: FirebaseDatabase
         //appDAO: AppDAO
-    ): AppRepository = AppRepositoryImpl(auth, storage, databaseFirebase, oneSignal)
+    ): AppRepository = AppRepositoryImpl(auth, storage, databaseFirebase)
 
     @Provides
     fun provideUseCases(repository: AppRepository) = UseCases(

@@ -28,10 +28,11 @@ import androidx.navigation.NavHostController
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
 import com.example.chatapp_by_command.ui.theme.*
 import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavHostController, systemUiController: SystemUiController) {
+fun SplashScreen(navController: NavHostController) {
     var startAnimation by remember { mutableStateOf(false) }
     val alphaAnim = animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,
@@ -39,6 +40,8 @@ fun SplashScreen(navController: NavHostController, systemUiController: SystemUiC
             durationMillis = 3000
         )
     )
+
+    val systemUiController = rememberSystemUiController()
 
     LaunchedEffect(key1 = true) {
         systemUiController.setNavigationBarColor(color = Black, darkIcons = true)

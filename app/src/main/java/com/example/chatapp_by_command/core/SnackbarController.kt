@@ -1,5 +1,6 @@
 package com.example.chatapp_by_command.core
 
+import androidx.compose.material.Snackbar
 import androidx.compose.material.SnackbarHostState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

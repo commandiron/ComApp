@@ -35,8 +35,7 @@ import kotlin.collections.HashMap
 class AppRepositoryImpl  @Inject constructor(
     private val auth: FirebaseAuth,
     private val storage: FirebaseStorage,
-    private val databaseFirebase: FirebaseDatabase,
-    private val oneSignal: OneSignal
+    private val databaseFirebase: FirebaseDatabase
 ): AppRepository {
 
     //Login Screen
@@ -210,16 +209,6 @@ class AppRepositoryImpl  @Inject constructor(
 
                 val databaseReference = databaseFirebase.getReference("Profiles").child(userUUID).child("profile").child("status")
                 databaseReference.setValue(userStatus.toString()).await()
-
-                //One signalde problem olabilir, alttaki kod çalışmadı anlamadım daha sonra geri döneceğim.
-
-//                if(userStatus.toString() == UserStatus.OFFLINE.toString()){
-//                    OneSignal.disablePush(false)
-//                    println("Push Disabled: " + OneSignal.getDeviceState()?.isPushDisabled)
-//                }else if(userStatus.toString() == UserStatus.ONLINE.toString()){
-//                    OneSignal.disablePush(true)
-//                    println("Push Disabled: " + OneSignal.getDeviceState()?.isPushDisabled)
-//                }
 
                 emit(Success(true))
             }else{
@@ -667,7 +656,11 @@ class AppRepositoryImpl  @Inject constructor(
 
     //ChatScreen
 
-    override suspend fun insertMessageToFirebase(chatRoomUUID: String, messageContent: String, registerUUID: String, oneSignalUserId : String): Flow<Response<Boolean>> = flow {
+    override suspend fun insertMessageToFirebase(
+        chatRoomUUID: String,
+        messageContent: String,
+        registerUUID: String,
+        oneSignalUserId : String): Flow<Response<Boolean>> = flow {
         try {
             emit(Loading)
 
@@ -677,9 +670,10 @@ class AppRepositoryImpl  @Inject constructor(
 
             OneSignal.postNotification(JSONObject("{'contents': {'en':'$myEmail: $messageContent'}, 'include_player_ids': ['" + oneSignalUserId + "']}"), object: OneSignal.PostNotificationResponseHandler{
                 override fun onSuccess(p0: JSONObject?) {
-
+                    println("onSuccess")
                 }
                 override fun onFailure(p0: JSONObject?) {
+                    println("onFailure: " + p0.toString())
                 }
             })
 

@@ -23,11 +23,10 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.chatapp_by_command.core.SnackbarController
-import com.example.chatapp_by_command.presentation.LoginCustomOutlinedTextField
+import com.example.chatapp_by_command.presentation.LoginEmailCustomOutlinedTextField
+import com.example.chatapp_by_command.presentation.LoginPasswordCustomOutlinedTextField
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
-import com.example.chatapp_by_command.presentation.common_components.LoginPasswordCustomOutlinedTextField
 import com.example.chatapp_by_command.presentation.login.LoginViewModel
-import com.example.chatapp_by_command.ui.theme.backgroundColorDark
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
@@ -47,7 +46,7 @@ fun SignUpScreen(
     val toastMessage = loginViewModel.toastMessage.value
     LaunchedEffect(key1 = toastMessage){
         if(toastMessage != ""){
-            SnackbarController(this).showSnackbar(snackbarHostState,toastMessage, null)
+            SnackbarController(this).showSnackbar(snackbarHostState,toastMessage, "Close")
         }
     }
 
@@ -105,7 +104,7 @@ fun SignUpScreen(
                     modifier = Modifier.padding(2.dp, 2.dp, 2.dp, 30.dp))
 
                 Box(modifier = Modifier.padding(2.dp)){
-                    LoginCustomOutlinedTextField(textEmail!!,"Email", Icons.Default.Email) {
+                    LoginEmailCustomOutlinedTextField(textEmail!!,"Email", Icons.Default.Email) {
                         textEmail = it
                     }
                 }

@@ -27,7 +27,6 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @InternalCoroutinesApi
 fun NavigationGraph(
     navController: NavHostController,
-    systemUiController: SystemUiController,
     snackbarHostState: SnackbarHostState,
     keyboardController: SoftwareKeyboardController
 ) {
@@ -52,8 +51,7 @@ fun NavigationGraph(
             }) {
 
             SplashScreen(
-                navController = navController,
-                systemUiController = systemUiController)
+                navController = navController)
         }
 
 

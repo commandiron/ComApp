@@ -132,7 +132,6 @@ class ProfileViewModel @Inject constructor(
             useCases.loadProfileFromFirebase().collect { response ->
                 when(response){
                     is Response.Loading -> {
-                        toastMessage.value = ""
                         isLoading.value = true
                     }
                     is Response.Success -> {

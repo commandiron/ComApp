@@ -1,8 +1,7 @@
 package com.example.chatapp_by_command
 
+import android.content.Context
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -15,8 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.chatapp_by_command.core.Constants
 import com.example.chatapp_by_command.domain.model.enumclasses.UserStatus
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
+import com.example.chatapp_by_command.presentation.common_components.CustomSnackbar
 import com.example.chatapp_by_command.ui.theme.*
 import com.example.chatapp_by_command.view.BottomNavigationView
 import com.example.chatapp_by_command.view.NavigationGraph
@@ -24,8 +25,7 @@ import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.onesignal.OneSignal
+import com.onesignal.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -33,7 +33,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @ExperimentalAnimationApi
 @AndroidEntryPoint
 @InternalCoroutinesApi
-class MainActivity : ComponentActivity(){
+class MainActivity : ComponentActivity(), OSSubscriptionObserver{
 
     private lateinit var mainViewModel: MainViewModel
 
@@ -43,6 +43,17 @@ class MainActivity : ComponentActivity(){
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         mainViewModel = defaultViewModelProviderFactory.create(MainViewModel::class.java)
+
+        // Logging set to help debug issues, remove before releasing your app.
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this)
+        OneSignal.setAppId(Constants.ONESIGNAL_APP_ID)
+
+        // OneSignal Enable Notification -> Notificationu app'e focus olunca kapatamıyorum.
+        OneSignal.addSubscriptionObserver(this)
+        OneSignal.disablePush(false)
 
         setContent {
             AppKeyboardFocusManager()
@@ -55,9 +66,8 @@ class MainActivity : ComponentActivity(){
 
     }
 
-    override fun onPause() {
-        mainViewModel.setUserStatusToFirebase(UserStatus.OFFLINE)
-        super.onPause()
+    override fun onStart() {
+        super.onStart()
     }
 
     override fun onResume() {
@@ -65,9 +75,32 @@ class MainActivity : ComponentActivity(){
         super.onResume()
     }
 
+    override fun onPause() {
+        mainViewModel.setUserStatusToFirebase(UserStatus.OFFLINE)
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
     override fun onDestroy() {
         mainViewModel.setUserStatusToFirebase(UserStatus.OFFLINE)
         super.onDestroy()
+    }
+
+    override fun onOSSubscriptionChanged(p0: OSSubscriptionStateChanges?) {
+
+        if (p0!!.from.isSubscribed &&
+            !p0!!.to.isSubscribed
+        ) {
+            println("Notifications Disabled!")
+        }
+        if (!p0!!.from.isSubscribed &&
+            p0!!.to.isSubscribed
+        ) {
+            println("Notifications Enabled!")
+        }
     }
 }
 
@@ -77,14 +110,6 @@ class MainActivity : ComponentActivity(){
 @ExperimentalAnimationApi
 @Composable
 fun MainScreenView(){
-
-    //Set SystemUiController
-    val systemUiController = rememberSystemUiController()
-    val darkIcons = MaterialTheme.colors.isLight
-    SideEffect {
-        //System bar kalın neden anlamadım.
-        //systemUiController.isNavigationBarContrastEnforced()
-    }
 
     val keyboardController = LocalSoftwareKeyboardController.current
     val snackbarHostState = remember {SnackbarHostState()}
@@ -99,8 +124,16 @@ fun MainScreenView(){
         modifier = Modifier.padding(rememberInsetsPaddingValues(
             insets = LocalWindowInsets.current.systemBars,
             applyTop = true,
-            applyBottom = true,)),
+            applyBottom = true,
+        )),
         scaffoldState = scaffoldState,
+        snackbarHost = {
+           SnackbarHost(hostState = it){ data ->
+                CustomSnackbar(
+                    snackbarData = data
+                )
+           }
+        },
         bottomBar = {
             bottomBarState.value =
                 currentRoute != BottomNavItem.Splash.fullRoute &&
@@ -111,6 +144,6 @@ fun MainScreenView(){
         BottomNavigationView(navController = navController, bottomBarState = bottomBarState.value)}
 
     ) {
-        NavigationGraph(navController,systemUiController,snackbarHostState,keyboardController!!)
+        NavigationGraph(navController,snackbarHostState,keyboardController!!)
     }
 }
