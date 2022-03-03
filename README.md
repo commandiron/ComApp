@@ -29,7 +29,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
 
 * Tech-stack ⚛️
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
-    * [Google Firebase](https://firebase.google.com)
+    * [Google Firebase](https://firebase.google.com) - with real time database.
     * [One Signal](https://onesignal.com)
     * [Flows](https://developer.android.com/kotlin/flow)
     * [Hilt](https://github.com/google/dagger) - DI
