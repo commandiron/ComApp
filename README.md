@@ -12,9 +12,9 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
 |UserList|Chat|Dark Theme|
 |<img src="https://user-images.githubusercontent.com/50905347/156539273-c63cc514-58d4-4b42-89ac-8ecd2f77412d.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/50905347/156539411-ef3bbeaa-9ddd-4278-a2fc-88f437b00c56.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/50905347/156539502-cb1155b5-d630-4c2b-94d7-13536dbcbd91.png" width="270" height="570">|
 
-|Firebase - Data Structure|
-|-------------------------|
-|<img src="https://user-images.githubusercontent.com/50905347/156565001-46ee1ac2-f231-47aa-b802-b49a1abed092.png" width="270" height="135">|
+|Firebase - Data Structure|App Package Structure|
+|-------------------------|---------------------|
+|<img src="https://user-images.githubusercontent.com/50905347/156565001-46ee1ac2-f231-47aa-b802-b49a1abed092.png" width="270" height="135">|<img src="https://user-images.githubusercontent.com/50905347/156565459-d8ab03a3-1248-4240-b093-231cff3a24fd.png" width="270" height="135">|
 
 * Application - Features ☕
    * User Status (ONLINE - OFFLINE)
