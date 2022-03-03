@@ -14,7 +14,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
 
 |Firebase - Data Structure|App Package Structure|
 |-------------------------|---------------------|
-|<img src="https://user-images.githubusercontent.com/50905347/156565001-46ee1ac2-f231-47aa-b802-b49a1abed092.png" width="270" height="135">|<img src="https://user-images.githubusercontent.com/50905347/156565459-d8ab03a3-1248-4240-b093-231cff3a24fd.png" width="270" height="135">|
+|<img src="https://user-images.githubusercontent.com/50905347/156565001-46ee1ac2-f231-47aa-b802-b49a1abed092.png" width="250" height="125">|<img src="https://user-images.githubusercontent.com/50905347/156565459-d8ab03a3-1248-4240-b093-231cff3a24fd.png" width="250" height="125">|
 
 * Application - Features ☕
    * User Status (ONLINE - OFFLINE)
