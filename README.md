@@ -26,6 +26,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
    * UserList Swipe Reflesh
    * Push Notification
    * Dark Theme
+   * Language - English
 
 * Tech-stack ⚛️
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
@@ -48,5 +49,6 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
    * Push notification ✔️ Listening only offline & chat navigation when notf. pressed ❌
    * Login via Google ❌
    * Swipe - Gestures ❌
+   * Language - Turkish
 
 
