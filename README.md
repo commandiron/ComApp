@@ -49,6 +49,8 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
    * Push notification ✔️ Listening only offline & chat navigation when notf. pressed ❌
    * Login via Google ❌
    * Swipe - Gestures ❌
-   * Language - Turkish
+   * Share - Location, Image ❌
+   * Group chat
+   * Language - Turkish ❌
 
 
