@@ -14,7 +14,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
 
 |Splash And Profile|Conversation|
 |------------------|------------|
-|<img src="https://user-images.githubusercontent.com/50905347/157693357-dbfc95de-627a-4883-bff7-d5847cfafe3b.gif" width="258" height="532">|<img src="https://user-images.githubusercontent.com/50905347/157693963-37351ce3-ebc9-491a-bfed-1eef10cf083b.gif" width="798" height="818">|
+|<img src="https://user-images.githubusercontent.com/50905347/157693357-dbfc95de-627a-4883-bff7-d5847cfafe3b.gif" width="258" height="532">|<img src="https://user-images.githubusercontent.com/50905347/157693963-37351ce3-ebc9-491a-bfed-1eef10cf083b.gif" width="532" height="545">|
 
 * Structure 🌲
 
