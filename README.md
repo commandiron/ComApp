@@ -50,7 +50,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
    * Login via Google ❌
    * Swipe - Gestures ❌
    * Share - Location, Image ❌
-   * Group chat
+   * Group chat ❌
    * Language - Turkish ❌
 
 
