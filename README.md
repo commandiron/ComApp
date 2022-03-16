@@ -58,5 +58,3 @@ Native Android simple chat application written in Kotlin using Jetpack Compose
    * Share - Location, Image ❌
    * Group chat ❌
    * Language - Turkish ❌
-
-
