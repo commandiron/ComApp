@@ -73,6 +73,7 @@ fun ChatAppBar(
                     Image(
                         painter = rememberImagePainter(pictureUrl),
                         contentDescription = null,
+                        contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .fillMaxHeight()
                             .aspectRatio(1f)

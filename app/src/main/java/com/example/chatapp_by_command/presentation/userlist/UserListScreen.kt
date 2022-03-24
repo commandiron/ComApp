@@ -24,7 +24,6 @@ import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavIte
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun UserListScreen(
     userListViewModel: UserListViewModel = hiltViewModel(),

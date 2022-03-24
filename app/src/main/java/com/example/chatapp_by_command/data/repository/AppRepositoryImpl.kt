@@ -31,7 +31,6 @@ import kotlin.collections.HashMap
 
 
 @Singleton
-@ExperimentalCoroutinesApi
 class AppRepositoryImpl  @Inject constructor(
     private val auth: FirebaseAuth,
     private val storage: FirebaseStorage,
@@ -231,7 +230,7 @@ class AppRepositoryImpl  @Inject constructor(
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     var friendListRegisterAcceptedList = listOf<FriendListRegister>()
-                    val job = launch {
+                    launch {
                         for(i in snapshot.children){
                             val friendListRegister = i.getValue(FriendListRegister::class.java)
 
@@ -241,7 +240,7 @@ class AppRepositoryImpl  @Inject constructor(
 
                         }
 
-                        val job2 = launch {
+                        launch {
 
                             var friendListUiRowList = listOf<FriendListUiRow>()
 
@@ -270,7 +269,7 @@ class AppRepositoryImpl  @Inject constructor(
                                     friendListUiRowList += friendListUiRow
                                 }
                             }
-                            val job3 = launch {
+                            launch {
 
                                 var resultList = listOf<FriendListUiRow>()
 
@@ -363,7 +362,7 @@ class AppRepositoryImpl  @Inject constructor(
 
             val databaseReference = databaseFirebase.getReference("Profiles")
 
-            var user: MyUser? = null
+            var user: MyUser?
 
             databaseReference.get().addOnSuccessListener {
                 var flagForControl = false
@@ -428,7 +427,7 @@ class AppRepositoryImpl  @Inject constructor(
                         hashMapForControl.putAll(hashMap)
                     }
 
-                    var chatRoomUUIDString: String? = null
+                    var chatRoomUUIDString: String?
 
                     if(keyListForControl.contains(requesterUUIDAndAcceptorUUID)){
 
@@ -788,7 +787,7 @@ class AppRepositoryImpl  @Inject constructor(
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    this@callbackFlow.trySendBlocking(Error(error.message ?: ERROR_MESSAGE))
+                    this@callbackFlow.trySendBlocking(Error(error.message))
                 }
             })
         } catch (e: Exception){

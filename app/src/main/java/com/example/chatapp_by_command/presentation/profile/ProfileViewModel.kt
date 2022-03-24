@@ -38,7 +38,6 @@ class ProfileViewModel @Inject constructor(
         loadProfileFromFirebase()
     }
 
-
     //PUBLIC FUNCTIONS
 
     fun setUserStatusToFirebaseAndSignOut(userStatus: UserStatus){

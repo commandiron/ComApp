@@ -31,7 +31,7 @@ object AppModule {
     fun provideFirebaseDatabaseInstance() = FirebaseDatabase.getInstance("https://commandchatapp-default-rtdb.europe-west1.firebasedatabase.app/")
 
     @Provides
-    fun provideSharedPreferences(application: Application) = application.getSharedPreferences("login", Context.MODE_PRIVATE)
+        fun provideSharedPreferences(application: Application) = application.getSharedPreferences("login", Context.MODE_PRIVATE)
 
 //    @Singleton
 //    @Provides

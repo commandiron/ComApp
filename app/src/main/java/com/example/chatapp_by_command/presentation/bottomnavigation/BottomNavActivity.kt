@@ -17,14 +17,9 @@ import com.example.chatapp_by_command.presentation.splash.SplashScreen
 import com.example.chatapp_by_command.presentation.userlist.UserListScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.systemuicontroller.SystemUiController
 import kotlinx.coroutines.InternalCoroutinesApi
 
-@OptIn(ExperimentalAnimationApi::class)
-@ExperimentalMaterialApi
-@ExperimentalComposeUiApi
 @Composable
-@InternalCoroutinesApi
 fun NavigationGraph(
     navController: NavHostController,
     snackbarHostState: SnackbarHostState,

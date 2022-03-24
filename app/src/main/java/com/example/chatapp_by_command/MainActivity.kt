@@ -1,15 +1,12 @@
 package com.example.chatapp_by_command
 
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.core.view.WindowCompat
@@ -27,12 +24,8 @@ import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.onesignal.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.InternalCoroutinesApi
 
-@ExperimentalComposeUiApi
-@ExperimentalAnimationApi
 @AndroidEntryPoint
-@InternalCoroutinesApi
 class MainActivity : ComponentActivity(), OSSubscriptionObserver{
 
     private lateinit var mainViewModel: MainViewModel
@@ -40,9 +33,11 @@ class MainActivity : ComponentActivity(), OSSubscriptionObserver{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
+        //MainViewModel For User Status
         mainViewModel = defaultViewModelProviderFactory.create(MainViewModel::class.java)
+
+        //For Insets library
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         // Logging set to help debug issues, remove before releasing your app.
         OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
@@ -51,7 +46,7 @@ class MainActivity : ComponentActivity(), OSSubscriptionObserver{
         OneSignal.initWithContext(this)
         OneSignal.setAppId(Constants.ONESIGNAL_APP_ID)
 
-        // OneSignal Enable Notification -> Notificationu app'e focus olunca kapatamıyorum.
+        // OneSignal Enable Notification -> Notificationu app'e focus olunca kapatamıyorum. Daha sonra tekrardan bak.
         OneSignal.addSubscriptionObserver(this)
         OneSignal.disablePush(false)
 
@@ -63,7 +58,6 @@ class MainActivity : ComponentActivity(), OSSubscriptionObserver{
                 }
             }
         }
-
     }
 
     override fun onStart() {
@@ -92,22 +86,18 @@ class MainActivity : ComponentActivity(), OSSubscriptionObserver{
     override fun onOSSubscriptionChanged(p0: OSSubscriptionStateChanges?) {
 
         if (p0!!.from.isSubscribed &&
-            !p0!!.to.isSubscribed
+            !p0.to.isSubscribed
         ) {
             println("Notifications Disabled!")
         }
-        if (!p0!!.from.isSubscribed &&
-            p0!!.to.isSubscribed
+        if (!p0.from.isSubscribed &&
+            p0.to.isSubscribed
         ) {
             println("Notifications Enabled!")
         }
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
-@ExperimentalComposeUiApi
-@InternalCoroutinesApi
-@ExperimentalAnimationApi
 @Composable
 fun MainScreenView(){
 

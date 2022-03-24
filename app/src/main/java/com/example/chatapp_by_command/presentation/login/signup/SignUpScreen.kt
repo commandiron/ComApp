@@ -30,10 +30,7 @@ import com.example.chatapp_by_command.presentation.login.LoginViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
-@ExperimentalMaterialApi
-@ExperimentalComposeUiApi
 @Composable
-@InternalCoroutinesApi
 fun SignUpScreen(
     emailFromSignIn: String,
     loginViewModel: LoginViewModel = hiltViewModel(),

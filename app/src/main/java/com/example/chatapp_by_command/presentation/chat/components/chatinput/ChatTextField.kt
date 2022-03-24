@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.chatapp_by_command.presentation.chat.components.chatappbar.IndicatingIconButton
 
-@OptIn(ExperimentalAnimationApi::class, androidx.compose.ui.ExperimentalComposeUiApi::class)
 @Composable
 fun ChatTextField(
     modifier: Modifier = Modifier,

@@ -2,6 +2,7 @@ package com.example.chatapp_by_command.view
 
 
 import android.widget.Toast
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.gestures.Orientation
@@ -35,10 +36,7 @@ import com.example.chatapp_by_command.domain.model.MessageRegister
 import com.example.chatapp_by_command.domain.model.MyUser
 import com.example.chatapp_by_command.presentation.chat.ProfilePictureDialog
 import com.google.accompanist.insets.*
-import kotlinx.coroutines.delay
 
-
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun ChatScreen(
     chatRoomUUID: String,
@@ -66,7 +64,6 @@ fun ChatScreen(
     ChatScreenContent(chatRoomUUID, opponentUUID, registerUUID, oneSignalUserId, chatViewModel, navController, keyboardController)
 }
 
-@OptIn(ExperimentalComposeUiApi::class, androidx.compose.material.ExperimentalMaterialApi::class)
 @Composable
 private fun ChatScreenContent(
     chatRoomUUID: String,

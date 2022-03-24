@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.example.chatapp_by_command.presentation.chat.components.chatinput.ChatTextField
 import com.google.accompanist.insets.*
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun ChatInput(
     modifier: Modifier = Modifier,

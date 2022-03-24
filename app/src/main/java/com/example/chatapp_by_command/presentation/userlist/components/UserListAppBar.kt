@@ -19,7 +19,6 @@ fun UserListAppBar(
     description: String = "Description",
     onUserAddButtonClick: (() -> Unit)? = null
 ) {
-    val context = LocalContext.current
 
     TopAppBar(
         elevation = 4.dp,

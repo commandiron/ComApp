@@ -30,9 +30,7 @@ import com.example.chatapp_by_command.presentation.profile.ProfileAppBar
 import com.example.chatapp_by_command.presentation.profile.ProfileViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 
-@ExperimentalComposeUiApi
 @Composable
-@InternalCoroutinesApi
 fun ProfileScreen(
     profileViewModel: ProfileViewModel = hiltViewModel(),
     navController: NavController,

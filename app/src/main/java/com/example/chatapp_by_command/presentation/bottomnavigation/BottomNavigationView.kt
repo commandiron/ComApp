@@ -18,7 +18,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.chatapp_by_command.presentation.bottomnavigation.BottomNavItem
 import com.example.chatapp_by_command.ui.theme.unselectedContentColor
 
-@ExperimentalAnimationApi
 @Composable
 fun BottomNavigationView(navController: NavController, bottomBarState: Boolean) {
     val items = listOf(
