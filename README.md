@@ -1,4 +1,4 @@
-# ComApp
+# ChatApp
 
 Native Android simple chat application written in Kotlin using Jetpack Compose.
 
