@@ -10,7 +10,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose.
 
 |Conversation|
 |------------|
-|<img src="https://user-images.githubusercontent.com/50905347/163409001-37e9c78e-6151-4c6d-bf2b-20fa11195d56.gif" width="250" height="530">|
+|<img src="https://user-images.githubusercontent.com/50905347/163415160-e4f3738a-db38-4a28-9c0c-c4ad28850ae7.gif" width="500" height="530">|
 
 * Screenshots 🖼️
 
