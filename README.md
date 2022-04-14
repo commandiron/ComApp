@@ -12,9 +12,9 @@ Native Android simple chat application written in Kotlin using Jetpack Compose.
 
 |Splash|Login|Profile|
 |------|-----|-------|
-|<img src="https://user-images.githubusercontent.com/50905347/163364316-643a02c7-c9ec-49b5-9e1e-5208a70647ed.png" width="295" height="625">|<img src="https://user-images.githubusercontent.com/50905347/163364324-a8ff0113-4e81-4297-a7f2-61030a9e9282.png" width="295" height="625">|<img src="https://user-images.githubusercontent.com/50905347/163385510-b745be01-503c-4cfb-8441-9f55982a2ecb.png" width="295" height="625">|
+|<img src="https://user-images.githubusercontent.com/50905347/163385930-1e585b03-cb51-42ba-b4d5-0f2f90a47f4e.png" width="295" height="625">|<img src="https://user-images.githubusercontent.com/50905347/163385935-12b3814f-d2aa-4061-9ea1-c88c18944fec.png" width="295" height="625">|<img src="https://user-images.githubusercontent.com/50905347/163385937-cc5eef02-54fd-45da-be3c-74ca053e093a.png" width="295" height="625">|
 |UserList|Chat|Dark Theme|
-|<img src="https://user-images.githubusercontent.com/50905347/163364339-b1899ed4-5e94-45d4-8927-817466e86855.png" width="295" height="625">|<img src="https://user-images.githubusercontent.com/50905347/163364343-55913181-7bff-4c42-baa8-8f8ad116a840.png" width="295" height="625">|<img src="https://user-images.githubusercontent.com/50905347/163364348-09990183-da90-4d85-9ae5-fb8b1eb09f9f.png" width="295" height="625">|
+|<img src="https://user-images.githubusercontent.com/50905347/163385939-56bd24b6-b3f0-439d-840f-612c3fff52e7.png" width="295" height="625">|<img src="https://user-images.githubusercontent.com/50905347/163385940-1018cf5d-c74f-4710-ac50-a57ae830f249.png" width="295" height="625">|<img src="https://user-images.githubusercontent.com/50905347/163385941-b8facff6-b986-4bd4-828b-3cca882682d7.png" width="295" height="625">|
 
 * Structure 🌲
 
