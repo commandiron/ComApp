@@ -12,7 +12,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose.
 
 |Splash|Login|Profile|
 |------|-----|-------|
-|<img src="https://user-images.githubusercontent.com/50905347/163364316-643a02c7-c9ec-49b5-9e1e-5208a70647ed.png" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163364324-a8ff0113-4e81-4297-a7f2-61030a9e9282.png" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163371283-3afd4b1e-ab73-4d50-9787-0495bb27ac7d.png" width="250" height="530">|
+|<img src="https://user-images.githubusercontent.com/50905347/163364316-643a02c7-c9ec-49b5-9e1e-5208a70647ed.png" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163364324-a8ff0113-4e81-4297-a7f2-61030a9e9282.png" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163374547-fc4e4a83-d2ca-4a84-8554-b60888e3d1fd.png" width="250" height="530">|
 |UserList|Chat|Dark Theme|
 |<img src="https://user-images.githubusercontent.com/50905347/163364339-b1899ed4-5e94-45d4-8927-817466e86855.png" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163364343-55913181-7bff-4c42-baa8-8f8ad116a840.png" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163364348-09990183-da90-4d85-9ae5-fb8b1eb09f9f.png" width="250" height="530">|
 
