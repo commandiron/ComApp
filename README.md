@@ -4,7 +4,7 @@ Native Android simple chat application written in Kotlin using Jetpack Compose.
 
 * Video 🧪
 
-|Splash, SignUp, Login|Profile, Add Friend|User List, Chat|
+|Splash, Login, SignUp|Profile, Add Friend|User List, Chat|
 |---------------------|-------------------|---------------|
 |<img src="https://user-images.githubusercontent.com/50905347/163409001-37e9c78e-6151-4c6d-bf2b-20fa11195d56.gif" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163409026-e1ce29d5-f6c0-4e39-8277-a1169d82768c.gif" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163409040-f85a1ec9-c286-4c40-a6c3-a52de1e0049e.gif" width="250" height="530">|
 
