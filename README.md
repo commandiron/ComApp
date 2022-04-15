@@ -1,20 +1,22 @@
-# ComApp
+# ChatApp <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" width="80" height="20"> <img src="https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white" width="80" height="20">
 
 Native Android simple chat application written in Kotlin using Jetpack Compose.
 
 * Video 🧪
 
-|Splash, SignUp Profile|Conversation|
-|----------------------|------------|
-|<img src="https://user-images.githubusercontent.com/50905347/157693357-dbfc95de-627a-4883-bff7-d5847cfafe3b.gif" width="258" height="532">|<img src="https://user-images.githubusercontent.com/50905347/157693963-37351ce3-ebc9-491a-bfed-1eef10cf083b.gif" width="532" height="545">|
+|Splash, Login, SignUp|Profile, Add Friend|User List, Chat|
+|---------------------|-------------------|---------------|
+|<img src="https://user-images.githubusercontent.com/50905347/163409001-37e9c78e-6151-4c6d-bf2b-20fa11195d56.gif" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163409026-e1ce29d5-f6c0-4e39-8277-a1169d82768c.gif" width="250" height="530">|<img src="https://user-images.githubusercontent.com/50905347/163409040-f85a1ec9-c286-4c40-a6c3-a52de1e0049e.gif" width="250" height="530">|
+
+|Conversation|
+|------------|
+|<img src="https://user-images.githubusercontent.com/50905347/163415160-e4f3738a-db38-4a28-9c0c-c4ad28850ae7.gif" width="500" height="530">|
 
 * Screenshots 🖼️
 
-|Splash|Login|Profile|
-|------|-----|-------|
-|<img src="https://user-images.githubusercontent.com/50905347/155622233-f76ff3d7-da3d-47e9-89a2-e401bd0887b7.png" width="250" height="500">|<img src="https://user-images.githubusercontent.com/50905347/155622238-9d075029-19e7-4fb3-a77d-71ba996d41f1.png" width="250" height="500">|<img src="https://user-images.githubusercontent.com/50905347/156538780-ec109ff4-050e-4100-9c35-e084841dd70d.png" width="250" height="500">|
-|UserList|Chat|Dark Theme|
-|<img src="https://user-images.githubusercontent.com/50905347/156539273-c63cc514-58d4-4b42-89ac-8ecd2f77412d.png" width="250" height="500">|<img src="https://user-images.githubusercontent.com/50905347/156539411-ef3bbeaa-9ddd-4278-a2fc-88f437b00c56.png" width="250" height="500">|<img src="https://user-images.githubusercontent.com/50905347/156539502-cb1155b5-d630-4c2b-94d7-13536dbcbd91.png" width="250" height="500">|
+<img src="https://user-images.githubusercontent.com/50905347/163409471-5c03b069-6c41-444c-879a-943295334425.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163409478-a24ffb25-3a60-4bbf-80cd-bb2a90ce3f20.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163409481-afba6ab5-1522-4d35-a1a3-543df762fb27.png" width="250" height="530">
+
+<img src="https://user-images.githubusercontent.com/50905347/163409482-bf4e1a6c-b731-4ba6-86a0-98106606ab48.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163409484-74a6d12d-33e7-4b07-97fb-2aea05e8077b.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/163409486-b34c264c-87bb-45c5-bbcd-3cc28d666c2d.png" width="250" height="530">
 
 * Structure 🌲
 
