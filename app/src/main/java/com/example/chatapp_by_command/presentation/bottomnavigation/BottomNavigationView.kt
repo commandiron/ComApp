@@ -41,9 +41,15 @@ fun BottomNavigationView(navController: NavController, bottomBarState: Boolean) 
                 val currentRoute = navBackStackEntry?.destination?.route
                 items.forEach { item ->
                     BottomNavigationItem(
-                        icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
-                        label = { Text(text = item.title,
-                            fontSize = 9.sp) },
+                        icon = {
+                            Icon(
+                                painter = painterResource(id = item.icon),
+                                contentDescription = item.title)},
+                        label = {
+                            Text(
+                                text = item.title,
+                                color = MaterialTheme.colors.onPrimary,
+                                fontSize = 9.sp) },
                         alwaysShowLabel = false,
                         selected = currentRoute == item.screen_route,
                         unselectedContentColor = unselectedContentColor,

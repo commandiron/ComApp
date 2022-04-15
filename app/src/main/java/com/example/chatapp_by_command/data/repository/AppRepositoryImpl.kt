@@ -284,11 +284,11 @@ class AppRepositoryImpl  @Inject constructor(
                                             .child("userProfilePictureUrl")
                                             .get().addOnSuccessListener {
 
-                                                val friendListUiRow = FriendListUiRow(i.chatRoomUUID,i.userEmail,i.userUUID,i.oneSignalUserId,i.registerUUID,it.value as String,i.lastMessage)
+                                                val friendListUiRow = FriendListUiRow(i.chatRoomUUID,i.userEmail,i.userUUID,i.oneSignalUserId,i.registerUUID,if(it.value != null)it.value as String else "",i.lastMessage)
                                                 resultList += friendListUiRow
 
                                             }.addOnFailureListener {
-                                                this@callbackFlow.trySendBlocking(Error(it.localizedMessage))
+                                                this@callbackFlow.trySendBlocking(Error(it.localizedMessage ?: ERROR_MESSAGE))
                                             }
                                     }
 

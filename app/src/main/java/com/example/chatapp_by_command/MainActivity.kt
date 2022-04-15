@@ -22,6 +22,7 @@ import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.onesignal.*
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -131,7 +132,8 @@ fun MainScreenView(){
                 currentRoute != BottomNavItem.SignUp.fullRoute &&
                 currentRoute != BottomNavItem.Chat.fullRoute
 
-        BottomNavigationView(navController = navController, bottomBarState = bottomBarState.value)}
+            BottomNavigationView(navController = navController, bottomBarState = bottomBarState.value)
+        }
 
     ) {
         NavigationGraph(navController,snackbarHostState,keyboardController!!)

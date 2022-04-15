@@ -26,3 +26,4 @@ sealed class BottomNavItem(var title:String, var icon:Int, var screen_route:Stri
 
 
 }
+
