@@ -38,7 +38,7 @@
 
 |Firebase - Data Structure|
 |-------------------------|
-|<img src="https://user-images.githubusercontent.com/50905347/156565001-46ee1ac2-f231-47aa-b802-b49a1abed092.png" width="125" height="125">|
+|<img src="https://user-images.githubusercontent.com/50905347/156565001-46ee1ac2-f231-47aa-b802-b49a1abed092.png" width="200" height="125">|
 
 * Application - Features ☕
    * User Status (ONLINE - OFFLINE)
